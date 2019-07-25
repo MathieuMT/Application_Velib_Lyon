@@ -1,0 +1,141 @@
+/* STYLE DU DIAPORAMA */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    display: table;
+    width: 100%;
+}
+
+/* styles du conteneur du diaporama et de ses boutons pour big screen */
+#conteneur {
+    display: flex;
+    position:relative;
+    width: 80%;
+    min-height: calc(100vh + 10em);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 5px inset aqua;
+    border-radius: 15px;
+}
+
+/* disparition du styles du texte explicatif qui remplace le diaporama pour les bigs screens */
+#text_small_screen {
+    display: none;
+    position:relative;
+    width: 80%;
+    min-height: calc(100vh - 20em);
+    margin: 10em auto;
+    padding-right: 20px;
+    color: fuchsia;
+    background-color: aqua;
+    font-family: sans-serif;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+/* style de la liste ordonnée qui explique comment faire une réservation de vélib’ en 7 étapes */
+#texte_explicatif {
+    justify-content: center;
+    align-items: center;
+    text-align:justify;
+    align-self: center;
+}
+
+/* style du diaporama contenant les diapositives */
+#diaporama {
+    display: flex;
+    flex: 0 0 100%;
+    margin: auto;
+    padding:0;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* styles des diapositives */
+.diapo {
+    align-items: center;
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* style des boutons précédent ("<") et suivant (">") */
+.btn {
+    width:35px;
+    height:35px;
+    font-size:1.1em;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background-color: rgba(194,196,196,0.6);
+    color: white;
+    font-weight: bold;
+    line-height:1.1em;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+}
+
+/* effets hover et active sur les boutons précédent ("<") et suivant (">") */
+.btn:hover,
+.btn:active {
+    background-color: rgba(0,0,0,0.9);
+    color: gold;
+}
+
+/* positionnement du bouton précédent ("<") */
+#prev {
+    position: absolute;
+    left: 3px;
+}
+
+/* effet d'ombre avec hover et active sur le bouton précédent ("<") */
+#prev:hover,
+#prev:active {
+    box-shadow: 2px 2px 2px gold;
+}
+
+/* positionnement du bouton suivant (">") */
+#next {
+    position: absolute;
+    right: 3px;
+}
+
+/* effet d'ombre avec hover et active sur le bouton suivant (">") */
+#next:hover,
+#next:active {
+    box-shadow: -2px 2px 2px gold;
+}
+
+
+
+
+
+/*************************************************/
+/*                                               */
+/* media-query pour les ecrans inferieur à 640px */
+/*                                               */
+/*************************************************/
+
+
+
+@media screen and (max-width: 640px) {
+    
+    /* disparition du conteneur du diaporama et de ses boutons pour les smalls screens */
+    #conteneur {
+       display: none; 
+    }
+    
+    /* apparition du styles du texte explicatif qui remplace le diaporama pour les smalls screens */
+    #text_small_screen {
+        display: flex;
+        width: 75%;
+        min-height: calc(100vh - 16em);
+        margin: 8px auto;
+    } 
+}

@@ -1,0 +1,41 @@
+
+#head_slider
+{
+    background: #111111;
+    height:550px;
+    width: 100%;
+}
+#bouton_doit
+{
+    position:relative;
+    height: 50px;
+    width:25px;
+    border-radius:50px 0 0 50px;
+    background-color: #4E5052;
+    float:right;
+    margin-top: 275px;
+}
+#bouton_gauche
+{
+    position:relative;
+    height:50px;
+    width:25px;
+    border-radius: 0 50px 50px 0;
+    background-color: #4E5052;
+    float:left;
+    margin-top: 275px;
+}
+.fa-chevron-left
+{
+    color:white;
+    position:absolute;
+    top:17px;
+    left:3px; 
+}
+.fa-chevron-right
+{
+    color:white;
+    position:absolute;
+    top:17px;
+    right:3px;
+}
