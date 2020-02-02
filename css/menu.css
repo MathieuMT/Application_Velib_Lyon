@@ -49,7 +49,7 @@ body {
 }
 
 /* titre du menu fixed pour big screen */
-#menu1 h1 {
+#menu1 h1, h1 {
     text-align: center;
     font-size: 2em;
     color:aqua;
