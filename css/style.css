@@ -1,0 +1,768 @@
+html, body{
+    margin:0;
+    padding: 0;
+    background-color:#007bff;
+    font-family: helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+#wrapper {
+    margin: 0; 
+}
+
+/*************************************************/
+/*                                               */
+/*                --- <header> ---               */
+/*                                               */
+/*************************************************/
+
+#header{
+    display: flex;
+    background-color:#007bff;
+    justify-content: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#header h1{
+    text-decoration: underline;
+    font-size: 1.7em;
+    font-weight: bolder;
+    color:coral;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    margin-top: 15%;
+    padding-top: 2%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+cite {
+    color:coral;
+    text-align: center;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    margin-top: 0;
+    margin-left: 15%;
+    padding-top: 0;
+}
+
+#header img {
+    background-color:transparent;
+    border-radius: 50%;
+    padding: 1%;
+    border: 3px solid coral;
+    box-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+}
+
+/*************************************************/
+/*                                               */
+/*           --- section #diaporama ---          */
+/*                                               */
+/*************************************************/
+
+#diaporama {
+    width: 100%;
+	overflow: hidden;
+    position: relative;
+}
+
+#diapositives{
+    position: relative;
+    width:400%;
+    height: 560px;
+    display:flex;
+}
+
+.diapo{
+    text-align: center;
+    margin:0;
+    width: 25%;
+    position: relative;
+}
+
+.inactive {
+    display: none;
+}
+
+.legende{
+    position: absolute;
+    top: 3%;
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0.09em 0.1em 0.09em #007bff;
+}
+
+.legende h2{
+    width: 50%;
+    font-size: 1.2em;
+    background-color: rgba(0, 123, 255, 0.6);
+    margin:0;
+    padding: 2%;
+    box-shadow:0.09em 0.1em 0.09em #0a1c1e;
+}
+
+figure img {
+    width: 80%;
+    height: 560px;
+}
+
+#boutons_diaporama {
+    position:absolute;
+    left: 10%;
+    bottom:20%;
+    display:flex;
+    width:80%;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#btn_gauche {
+    margin-left: 5%;
+}
+
+#btn_droite {
+    margin-right: 5%;
+}
+
+#btn_chevrons{
+    display:flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#btn_diapo{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#diaporama i{
+    color:#007bff;
+    text-shadow:0.09em 0.1em 0.09em #0a1c1e;
+}
+
+#diaporama i:hover {
+    color: coral;
+}
+
+/*************************************************/
+/*                                               */
+/*          --- div#btns_intermediaires ---         */
+/*                                               */
+/*************************************************/
+
+#btns_intermediaires{
+    display:flex;
+    justify-content:space-around;
+    padding:1%;
+}
+
+#btns_intermediaires button{
+    padding:1%;
+    border:none;
+    font-size: 150%;
+    font-weight: bold;
+    color:#007bff;
+    background-color: white;
+    box-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    cursor: pointer;
+    outline: 0;
+}
+
+#btns_intermediaires button:hover {
+    background-color: coral;
+}
+
+/*************************************************/
+/*                                               */
+/*          --- section #stations_map ---        */
+/*                                               */
+/*************************************************/
+
+/* style de la section contenant une google map et un panneau d'informations */
+#stations_map {
+    width: 100%;
+    display: flex;
+    margin: auto ;  
+}
+
+/*************************************************/
+/*                                               */
+/*                --- div #map ---               */
+/*                                               */
+/*************************************************/
+
+/* style du conteneur de la google map */
+#map {
+    width: 100%;
+    background-color: #007bff;
+    height: 400px;
+    border:  5px solid coral;
+    margin: 5px;
+    border-radius: 15px; 
+}
+
+/*************************************************/
+/*                                               */
+/*           --- div #infos_station ---          */
+/*                                               */
+/*************************************************/
+
+/* style des informations de chaque station Vélo’V */
+#infos_station {
+    display: none;
+    flex-direction: column;
+    flex: 1 1 35%;
+    margin: 5px;
+    padding: 0; 
+    border:  5px solid coral;
+    border-radius: 15px;
+    background-color: #007bff;
+    align-items: center;
+    overflow:scroll;
+}
+
+#titre_infos {
+    background-color: coral;
+    width: 100%;
+    height: auto;
+}
+
+/* style du titre h2 contenant les informations pour chaque station Vélo’V */
+#infos_station h2 {
+    text-align: center;
+    color:#007bff;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    padding-top:1%;
+    padding-bottom: 1%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+
+/* style de la liste non-ordonnée contenant les informations */
+#infos_station ul{
+    list-style-type: none;
+    padding:5px;
+}
+
+/* style des titres h3 et label contenant les informations de chaque station Vélo’V */
+#infos_station li h3, #reservation label {
+    color:coral;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e; 
+}
+
+/* style des paragraphes contenant les informations sur chaque station Vélo’V */
+#infos_station li p{
+    text-align: center;
+    font-weight: bold;
+    text-shadow: -1px -1px 1px coral;
+    background-color: #007bff;
+}
+
+/*champs nom et prénom*/
+#nom, #prenom {
+    background-color: coral;
+    border: 1px solid coral;
+    color: #007bff;
+}
+
+.modal{
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 50%; 
+    height: 30%; 
+    overflow: hidden;
+    padding: 20px;
+    margin:auto;
+    background-color: rgba(0,123,255,0.4);
+    border: 1px solid coral;
+    line-height:50%;
+    text-align:center; 
+    
+}
+
+.close {
+    color:coral;
+    float: right;
+    font-size: 2.2em;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 1;
+    margin-right: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color:white;
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 1px 0 coral;
+    opacity: 1;
+}
+
+#champsVides {
+    vertical-align:middle;
+    background-color: #007bff;
+    color: coral;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    line-height:550%;
+    font-size: 2em;    
+}
+
+/* style du conteneur des boutons "Réservez ici" et "Annulez ici" */
+#btn {
+    display:flex;
+    flex-direction: column;
+}
+
+/* style du conteneur du bouton "Réservez ici" */
+#btn-reserve {
+    align-self: center;
+    display:none;
+    margin-bottom: 55px;
+}
+
+/* style du bouton "Réservez ici"  */
+#btn_reservation{
+    display: block;
+    background-color: coral;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    color:#007bff;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    border-radius: 15px;
+    border: 3px solid #007bff;
+    cursor:pointer;
+    outline: 0;
+}
+
+/* effet hover et active sur le bouton "Réservez ici" */
+#btn_reservation:hover,
+#btn_reservation:active {
+    background-color: #007bff;
+    color:coral;
+    text-shadow: -1px -1px 1px #0a1c1e;
+    border: 3px solid coral;
+    box-shadow: -4px -4px 2px #0a1c1e;
+}
+
+/* style du conteneur du bouton "Annulez ici" */
+#off {
+    align-self:center;
+    padding-bottom: 15%;
+}
+
+/* style du bouton "Annulez ici" */
+#annulation {
+    display: none;
+    background-color: coral;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    color:red;
+    text-shadow: -1px -1px 1px #0a1c1e;
+    border-radius: 15px;
+    border: 3px solid red;
+    cursor:pointer;
+    outline: 0;
+}
+
+/* effet hover et active sur le bouton "Annulez ici" */
+#annulation:hover,
+#annulation:active {
+    background-color: red;
+    color:coral;
+    text-shadow: -1px -1px 1px #0a1c1e;
+    border: 3px solid coral;
+    box-shadow: -4px -4px 2px #0a1c1e;
+}
+
+/*************************************************/
+/*                                               */
+/*          --- section #signature ---           */
+/*                                               */
+/*************************************************/
+
+/* style du conteneur contenant l'espace canvas pour la signature */
+#signature {
+    display:none;
+    background-color: rgba(0,123,255,0.4);
+    z-index: 1OOO;
+    width: 100%; 
+    padding-top: 140%;
+    padding-bottom: 60%;
+    height: 100%;
+    overflow:hidden;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+/* toile-canvas */
+#enveloppe-toile {
+    display:flex;
+    justify-content: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* style du canvas */
+#canvas {
+    background: white;
+    border:0.5em #007bff solid;
+}
+
+/* Modal Content */
+.modal_content {
+    width: 45%;
+    background-color: coral;
+    margin: auto;
+    padding:0px 10px 20px 10px;
+    border: 1px solid #007bff;
+    border-radius: 2%;
+    box-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+}
+
+/* Modal Header */
+.modal_header{
+    display: flex;
+    justify-content: center;
+    color: #007bff;
+}
+
+.modal_header h2{
+      margin-top:0px;
+}
+
+.close_canvas {
+    color: #007bff;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+}
+  
+.close_canvas:hover{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* style du conteneur du bouton "Confirmez votre réservation" dans le panneau contenant le canvas pour la signature */
+#btn_signature {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 3%;
+}
+
+/* style des boutons "Confirmation" et "Effacer" dans le panneau contenant le canvas pour la signature */
+#btn_validation, #btn_effacer {
+    display: none;
+    background-color: coral;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color:#007bff;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    border-radius: 15px;
+    border: 3px solid #007bff;
+    cursor:pointer;
+    outline: 0;
+}
+
+/* effet hover et active sur le bouton "Confirmation" et "Effacer" dans le panneau contenant le canvas pour la signature */
+#btn_validation:hover, #btn_effacer:hover,
+#btn_validation:active, #btn_effacer:active {
+    background-color: #007bff;
+    color:coral;
+    text-shadow: -1px -1px 1px #0a1c1e;
+    border: 3px solid coral;
+    box-shadow: -4px -4px 2px #0a1c1e;
+}
+
+
+/*************************************************/
+/*                                               */
+/*           --- div#resultats ---          */
+/*                                               */
+/*************************************************/
+
+/* style des résultats et du compte à rebours */
+#resultats {
+    width: 80%;
+    height: 15%;
+    display: none;
+    border-radius: 15px;
+    margin: 0.5em auto;
+    background-color: #007bff;
+}
+
+#msg {
+    display:flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+#notification {
+    display: block;
+    flex: 1 1 100%;
+    margin: 5px;
+    border-radius: 15px;
+    color: white;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    font-size: 1em;
+    font-weight: bold;
+    z-index: 200;
+}
+
+/* style du compte à rebours */
+#countdown {
+    display: block;
+    flex: 1 1 100%;
+    margin: 5px;
+    border-radius: 15px;
+    color: white;
+    text-shadow: -1px -1px 1px darkblue;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    font-size: 1em;
+    font-weight: bold;
+    z-index: 200;
+}
+
+/*************************************************/
+/*                                               */
+/*                --- <footer> ---               */
+/*                                               */
+/*************************************************/
+
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color:coral;
+    margin-top: 20px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+footer a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    font-size: 110%;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+/*************************************************/
+/*                                               */
+/*             --- Media queries ---             */
+/*                                               */
+/*************************************************/
+
+@media screen and (max-width:1024px) {
+    
+/*--- Header ---*/
+     #header {
+        margin-top: auto;
+    }
+    
+/*--- Diaporama ---*/
+    #diapositives{
+        height: auto;
+    }
+    
+    .legende h2{
+        padding:2%;
+        width: 80%;
+        font-size: 1em;
+    } 
+    
+    figure img {
+        width: 100%;
+        height: auto;
+    }
+
+    
+/*--- div #infos_station ---*/
+    .modal{
+        height: 25%; 
+        line-height:10%;
+        overflow: hidden;
+        text-align:center;
+    }
+
+    #champsVides {
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        line-height:50%;
+        font-size: 1.1em;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    
+/*--- section #signature ---*/
+    #signature {
+        padding-top: 185%;/* pour que le background couvre bien toute la hauteur */
+        padding-bottom: 170%;
+    }    
+    
+}
+
+@media screen and (max-width:768px) {
+
+/*--- Diaporama ---*/
+    #diapositives{
+        height: auto;
+    }
+    
+    figure img {
+        width: 100%;
+        height: auto;
+    }
+    
+/*--- div #infos_station ---*/
+    .modal{
+        height: 25%; 
+        line-height:10%;
+        overflow: hidden;
+        text-align:center;
+    }
+
+    #champsVides {
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        line-height:300%;
+        font-size: 1.1em;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        padding-left: 5%;
+        padding-right:  5%;
+    } 
+    
+/*--- section #signature ---*/
+    #signature {
+        padding-top: 145%;/* pour que le background couvre bien toute la hauteur */
+        padding-bottom: 125%;
+    }    
+
+}
+
+@media screen and (max-width:576px) {
+
+/*--- <header> ---*/
+    #header h1{
+        font-size: 1.2em;
+        padding-top: 7%;
+    }
+    
+    cite{
+        margin-left: 0;
+    }
+    
+    #header img {
+        padding: 0.3%;
+    }
+    
+/*--- Diaporama ---*/
+    #diapositives{
+        height: auto;
+    } 
+    
+    figure img {
+        width: 100%;
+        height: auto;
+    }
+    
+/*--- div #infos_station ---*/
+    
+    #infos_station h2 {
+        margin-top: 5%;  
+    }
+    
+    .modal{
+        height: 25%; 
+        line-height:8%;
+        overflow: hidden;
+        text-align:center;
+    }
+
+    #champsVides {
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        line-height:200%;
+        font-size: 1em;
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }   
+    
+    /* taille du bouton "Réservez ici" */
+    #btn_reservation {
+       font-size: 33px; 
+    }
+    /* style du bouton "Annulez ici" */
+    #annulation {
+        margin: auto;
+        font-size: 33px;
+        margin-bottom: 6%;
+    }    
+    
+/*--- section #signature ---*/ 
+    #signature {
+        top: 200%;
+        padding-top: 290%;
+        padding-bottom: 365%;
+        flex: 1 1 55%; 
+    }
+    
+    .modal_content {
+        width: 90%;
+    }
+    
+    /* positionnement du canvas */
+    #canvas {
+        marrgin-top:0.5%;
+        margin-bottom: 0.5%;
+    }
+
+/*--- div#resultats ---*/
+    
+    /* style du pied de page contenant des messages et un compte à rebours */
+    #resultats {
+        display: none;
+        height: 13.5%;
+        flex-direction: column;
+        overflow: scroll;
+    }
+    
+    #notification {
+        flex: 1 1 100%;
+    }
+}
