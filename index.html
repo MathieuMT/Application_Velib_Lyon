@@ -7,337 +7,318 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
+        <!-- script d'apparition et de disparition des boutons "lecture" et "pause" à tour de rôle dans le diaporama --> 
+        <script src="https://kit.fontawesome.com/61e34a719d.js" crossorigin="anonymous" SameSite="none Secure"></script>
         
-        <link rel="stylesheet" href="css/menu.css" type="text/css"/>
+        <!-- cdn bootstrap .css -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+
+        <link rel="icon" type="image/ico" href="assets/img/marqueurs/velo_v_icone.png" />
         
-        <link rel="stylesheet" href="css/diaporama.css" type="text/css"/>
-        
-        <link rel="stylesheet" href="css/map.css" type="text/css"/>
-        
-        <link rel="icon" type="image/ico" href="assets/img/marqueurs/velib_icone.png">
-        
-        <title>Lyon à Vélib’</title>
+        <!-- cdn bootstrap .js -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <title>Grand Lyon à Vélo’V</title>
         
     </head>
     
     <body>
-        
-        <header id="menu1">
-           
-            <ul id="menu-app">
-                
-                <li>
-                   
-                    <a class="logo_btn" href="#presentation">
-                       
-                        <img id="1" src="assets/img/marqueurs/presentation.png" alt="logo" title="Comment réserver un vélib‘"><!--#1-->
-                        
-                    </a><!--.logo_btn-->
-                    
-                </li>
-                
-                <li>
-                   
-                    <h1>Lyon à Vélib’</h1>
-                    
-                </li>
-                
-                <li>
-                   
-                    <a class="logo_btn" href="#reservation">
-                       
-                        <img id="2" src="assets/img/marqueurs/reservation.png" alt="logo" title="Réserver un vélib‘"><!--#2-->
-                        
-                    </a><!--.logo_btn-->
-                    
-                </li>
-                
-            </ul><!--#menu-app-->
-            
-        </header><!--#menu1-->
-        
-        
-        <header id="menu2">
-            
-            <ul id="menu-app">
-                
-                <li>
-                   
-                    <a href="#presentation">
-                       
-                        <input type="text" value="Présentation" id="explication"><!--#explication-->
-                        
-                    </a>
-                    
-                </li>
-                
-                <li>
-                   
-                    <h2>Lyon à Vélib’</h2>
-                    
-                </li>
-                
-                <li>
-                   
-                    <a href="#reservation">
-                       
-                        <input type="text" value="Réservation" id="application"><!--#application-->
-                        
-                    </a>
-                    
-                </li>
-                
-            </ul><!--#menu-app-->
-            
-        </header><!--#menu2-->
        
-       
-        <div>
-          
-           <a name="presentation"></a>
-           
-        </div>
-       
-        <section id="conteneur">
-            
-            <button id="prev" class="btn"><</button><!--#prev.btn-->
-           
-            <button id="next" class="btn">></button><!--#next.btn-->
-           
-            <div id="diaporama">
-                       
-                <img id="diapo1" class="diapo" src="assets/img/diapositifs/diapo1.png" alt="diapo1"/><!--#diapo1.diapo-->
-                       
-                <img id="diapo2" class="diapo" src="assets/img/diapositifs/diapo2.png" alt="diapo2"/><!--#diapo2.diapo-->
-                    
-                <img id="diapo3" class="diapo" src="assets/img/diapositifs/diapo3.png" alt="diapo3"/><!--#diapo3.diapo-->
-                
-                <img id="diapo4" class="diapo" src="assets/img/diapositifs/diapo4.png" alt="diapo4"/><!--#diapo4.diapo-->
-                
-                <img id="diapo5" class="diapo" src="assets/img/diapositifs/diapo5.png" alt="diapo5"/><!--#diapo5.diapo-->
-                
-                <img id="diapo6" class="diapo" src="assets/img/diapositifs/diapo6.png" alt="diapo6"/><!--#diapo6.diapo-->
-                
-                <img id="diapo7" class="diapo" src="assets/img/diapositifs/diapo7.png" alt="diapo7"/><!--#diapo7.diapo-->
-                   
-            </div><!--#diaporama-->
-            
-            
-        </section><!--#conteneur-->
+        <div id="wrapper" class="container-fluide">
         
-        <section id="text_small_screen">
-           
-           <ol id="texte_explicatif" start="1">
-               
-               <li>VEUILLEZ ZOOMER SUR LA CARTE</li>
-               
-               <li>PUIS CLIQUER SUR UNE STATION VERTE AU CHOIX</li>
-               
-               <li>SCROLLER VERS LE BAS SUR LES PANNEAUX DÉROULANT SOUS LA CARTE</li>
-               
-               <li>CLIQUER SUR LE BOUTON "RÉSERVEZ ICI"</li>
-               
-               <li>SIGNER À L'INTERIEUR DU CERCLE BLANC</li>
-               
-               <li>CLIQUER SUR "CONFIRMEZ VOTRE RÉSERVATION"</li>
-               
-               <li>VOILÀ VOTRE VELILB‘ RÉSERVÉ PENDANT 20 MINUTES À LA STATION DE VOTRE CHOIX.</li>
-               
-           </ol><!--#texte_explicatif-->
+            <!-- header -->
+            <div class="row">               
+                <header class="col-sm-12">
+                    <div id="header">
+                        <div id="titre_citation">
+                            <h1>Grand Lyon à </h1>
+                            <cite>(location de vélo)</cite>
+                        </div><!-- #titre_citation -->
+                        &nbsp
+                        &nbsp
+                        <img src="assets/img/marqueurs/velo_v_icone.png" alt="logo">
+                    </div><!-- #header -->
+               </header><!-- .col-sm-12 -->   
+            </div><!-- .row -->
+
+            <!-- section diaporama-->
+            <div class="row"> 
             
-        </section><!--#text_small_screen-->
+                <section id="diaporama" class="col-sm-12 p-0 mx-auto">
+
+                    <div id="diapositives">
+
+                     <figure class="diapo">
+
+                        <img src= "assets/img/diapositives/diapo_1.jpg" alt="Comment réserver un vélo"/>
+
+                        <figcaption class="legende"><h2>Comment faire la réservation de votre Vélo’V?</h2></figcaption><!-- .legende -->
+
+                     </figure><!-- .diapo -->
+
+                     <figure class="diapo inactive">
+
+                        <img src= "assets/img/diapositives/diapo_2.jpg" alt="choisir une station de vélo sur la carte"/>
+
+                        <figcaption class="legende"><h2>1-Veuillez choisir une station de Vélo’V au marqueur vert sur la carte</h2></figcaption><!-- .legende -->
+
+                     </figure><!-- .diapo .inactive -->
+
+                     <figure class="diapo inactive">
+
+                        <img src= "assets/img/diapositives/diapo_3.jpg" alt="Indiquer votre nom et prénom dans le formulaire"/>
+
+                        <figcaption class="legende"><h2>2-S'il y a des Vélo’V disponibles à la station,<br>Indiquez vos nom et prénom dans les champs de texte</h2></figcaption><!-- .legende -->
+
+                     </figure><!-- .diapo .inactive -->
+
+                     <figure class="diapo inactive">
+
+                        <img src= "assets/img/diapositives/diapo_4.jpg" alt="Signez pour réserver votre vélo"/>
+
+                        <figcaption class="legende"><h2>3-Terminez en signant votre réservation</h2></figcaption><!-- .legende -->
+                     </figure><!-- .diapo .inactive -->
+
+                    </div><!-- #diapositives -->
+
+
+
+                    <div id="boutons_diaporama">
+
+                        <div id="btn_gauche" >
+
+                          <i id="chevronGauche" class="fas fa-chevron-circle-left fa-3x"></i><!-- #chevronGauche .fas .fa-chevron-circle-left .fa-3x -->
+
+                        </div><!-- #btn_gauche -->
+
+                        <div id="btn_diapo">
+
+                            <i id ="lecture" class="fas fa-play-circle fa-3x inactive"></i><!-- #lecture .fas .fa-play-circle .fa-3x .inactive -->
+
+                            <i id="pause" class="fas fa-pause-circle fa-3x"></i><!-- #pause .fas .fa-pause-circle .fa-3x -->
+
+                        </div><!-- #btn_diapo -->
+
+
+                        <div id="btn_droite">
+
+                          <i id="chevronDroite" class="fas fa-chevron-circle-right fa-3x"></i><!-- #chevronDroite .fas .fa-chevron-circle-right .fa-3x -->
+
+                        </div><!-- #btn_droite -->
+
+                    </div><!-- #boutons_diaporama -->             
+
+
+                </section><!-- #diaporama .col-sm-12 .p-0 mx-auto -->         
+
+
+                        
+            </div><!-- .row -->
+            
+            <!-- section btns_intermediaires -->                      
+            <div class="row">
+                   
+                <section id="btns_intermediaires" class="col-sm-12">
+
+                    <button id="versDiaporama">Diaporama</button>
+                    <button id="reservation">Réservation</button>
+
+                </section><!-- #btns_intermediaires .col-sm-12 -->
+                   
+            </div><!-- .row -->
         
-        <div>
-           
-            <a name="reservation"></a>
-            
-        </div>
         
-        <section id="stations_map">
-            
-            <div id="map"></div><!--#map-->
-            
-            <div id="signature">
-              
-               <h3>Veuillez signez dans l'espace blanc ci-dessous:</h3>
-               
-               <h5>Veuillez signez dans l'espace blanc ci-dessous:</h5>
-               
-               
-               <div id="enveloppe-toile">
-               
-                    <canvas id="canvas" width="160" height="160">
-                   
-                        <p>Désolé, votre navigateur ne supporte pas Canvas. Mettez-vous à jour</p>
-                    
-                    </canvas><!--#canvas-->
+        
+        
+            <!-- section stations_map -->
+            <section id="stations_map" class="row">
                 
-                </div><!--#enveloppe-toile-->
+                <!-- map -->
+                <div id="map"></div><!--#map-->
                 
+                <!-- infos_station-->
+                <div id="infos_station" class="col-sm-5 col-xs-12">
+                    <div id="titre_infos">
+                        <h2>Informations sur la station sélectionnée:</h2>
+                    </div><!-- #titre_infos -->
                 
-                <div id="on">
-                   
-                    <input id="btn_validation" type="button" value="Confirmez votre réservation"/>
-                    
-                </div><!--#on-->
-                
-            </div><!--#signature-->
-            
-            <div id="infos_station">
-               
-                <h2>Informations sur la station</h2>
-                
-                <div class="logo">
-                
-                    <img src="assets/img/marqueurs/velib_icone.png" alt="logo" title="Veuillez scroller vers le bas pour réserver un vélib‘">
-                    
-                </div><!--.logo-->
-                
-                <h2>sélectionnée:</h2>
-              
-                <ul>
-                   
-                    <li>
+                    <ul>
+
+                        <li>
+
+                            <h3>Numéro - Nom de la station:</h3>
+
+                            <p id="name"></p><!-- #name -->
+
+                        </li>
+
+                        <li>
+
+                            <h3>Adresse de la station:</h3>
+
+                            <p id="address"></p><!-- #address-->
+
+                        </li>
+
+                        <li>
+
+                            <h3>Statut de la station:</h3>
+
+                            <p id="status"></p><!-- #status -->
+
+                        </li>
+
+                        <li>
+
+                            <h3>Capacité de vélos:</h3>
+
+                            <p id="bike_stands"></p><!-- #bike_stands -->
+
+                        </li>
+
+                        <li>
+
+                            <h3>Vélo(s) disponible(s):</h3>
+
+                            <p id="available_bikes"></p><!-- #available_bikes -->
+
+                        </li>
+
+                        <li>
+
+                            <h3>Place(s) disponible(s):</h3>
+
+                            <p id="available_bike_stands"></p><!-- #available_bike_stands -->
+
+                        </li>
+
+                    </ul>
+                        
+                      
+                    <div id="reservation">
+                            
+                        <p>
+                            <label for="nom">Nom :</label>
+                                 
+                            <input type="text" name="nom" id="nom" placeholder="nom" required/><!-- #nom -->
+                              
+                            <br>
+                               
+                            <label for="prenom">Prénom:</label>
+                                 
+                            <input type="text" name="prenom" id= "prenom" placeholder="prénom" required/><!-- #prenom -->
                        
-                        <h3>Numéro - Nom de la station:</h3>
-                        
-                        <p id="name"></p><!--#name-->
-                        
-                    </li>
-                    
-                    <li>
-                       
-                        <h3>Adresse de la station:</h3>
-                        
-                        <p id="address"></p><!--address-->
-                        
-                    </li>
-                    
-                    <li>
-                       
-                        <h3>Statut de la station:</h3>
-                        
-                        <p id="status"></p><!--#status-->
-                        
-                    </li>
-                    
-                    <li>
-                       
-                        <h3>Capacité de vélos:</h3>
-                        
-                        <p id="bike_stands"></p><!--#bike_stands-->
-                        
-                    </li>
-                    
-                    <li>
-                       
-                        <h3>Vélo(s) disponible(s):</h3>
-                        
-                        <p id="available_bikes"></p><!--#available_bikes-->
-                        
-                    </li>
-                    
-                    <li>
-                       
-                        <h3>Place(s) disponible(s):</h3>
-                        
-                        <p id="available_bike_stands"></p><!--#available_bike_stands-->
-                        
-                    </li>
-                    
-                </ul>
-                
-                <div id="btn">
-                
-                    <div id="btn-reserve">
-                   
-                        <input id="btn_reservation" type="button" value="Réservez ici"/><!--#btn_reservation-->
-                    
-                    </div><!--#btn-reserve-->
-                
-                    <div id="off">
-                       
-                        <input id="annulation" type="button" value="Annulez ici"/><!--annulation-->
-                        
-                    </div><!--#off-->
-                
-                    <div id="state">
-                    
-                        <div id="state-container">
-                        
-                            <p class="msg_error">"Veuillez zoomer sur la carte ci-jointe, puis cliquer sur la </p><!--.msg_error-->
+                        </p> 
+                               
+                        <div class="modal">
+                            
+                            <span class="close">&times;</span>
+                            
+                            <p id="champsVides">Veuillez remplir vos nom et prénom</p>
+                            
+                        </div><!-- .modal -->
                          
-                            <p>
-                            
-                                <em class="green_color">station</em><!--.green_color-->
-                             
-                            </p>
-                          
-                            <div class="logo">
-                           
-                                <img src="assets/img/marqueurs/velib_icone.png" alt="logo">
-                            
-                            </div><!--.logo--> 
-                        
-                            <p>
-                        
-                                <em class="green_color">verte</em><!--.green_color-->
-                            
-                            </p>
-                        
-                            <p class="msg_error">
-                         de votre choix, représentée par un marqueur, pour réserver un vélo"
-                            </p><!--.msg_error-->
-                        
-                        </div><!--state-container-->
-                    
-                    </div><!--#state-->
-                
-                </div><!--#btn-->
-                
-            </div><!--#infos_station-->
-            
-        </section><!--#stations_map-->
-           
-        <footer>
-              
-            <div id="filter">
+                    </div><!-- #reservation --> 
+                      
+                    <div id="btn">
+
+                        <div id="btn-reserve">
+
+                            <input id="btn_reservation" type="button" value="Réservez ici"/><!-- #btn_reservation -->
+
+                        </div><!-- #btn-reserve -->
+
+                        <div id="off">
+
+                            <input id="annulation" type="button" value="Annulez ici"/><!-- #annulation -->
+
+                        </div><!-- #off -->
+
+                    </div><!--#btn-->
+
+                </div><!-- #infos_station .col-sm-5 .col-xs-12 -->
+
+            </section><!-- #stations_map .row -->
                    
-                <div id="logo_footer">
+             <!-- section signature -->     
+            <section id="signature">
                        
-                    <img src="assets/img/marqueurs/velib_icone.png" alt="logo"/>
-                    
-                </div><!--#logo_footer-->
-                    
-                <div id="msg">
-                       
-                    <p id="session_storage"></p><!--#session_storage-->
+                <div class="modal_content">
+                          
+                    <span class="close_canvas">&times;</span><!-- .close_canvas -->
+                          
+                          
+                    <div class="modal_header">
+                        <h2>Signature</h2>
+                    </div><!-- .modal_header -->
+
+                    <div id="enveloppe-toile">
+
+                    <canvas id="canvas">
+
+                        Mettez à jour votre navigateur
+
+                    </canvas><!-- #canvas -->
+
+                    </div><!-- #enveloppe-toile -->
+
+
+                        <div id="btn_signature">
+
+                            <input id="btn_validation" type="button" value="Confirmation"/><!-- #btn_validation -->
+                                
+                            <input id="btn_effacer" type="button" value="Effacer"/><!-- #btn_effacer -->
+                                
+
+                        </div><!-- #btn_signature -->
+                            
+                </div><!-- .modal_content -->
                         
-                    <p id="countdown"></p><!--#countdown-->
-                        
-                </div><!--#msg-->
-                     
-            </div><!--#filter-->   
-                       
-        </footer>
-           
+            </section><!-- #signature -->
             
+            
+            
+            
+            <!-- section resultats -->
+            <section id="resultats" class="row">
+                
+                <div id="msg">
+
+                    <p id="notification"></p><!-- #notification -->
+
+                    <p id="countdown"></p><!-- #countdown -->
+
+                </div><!-- #msg -->
+    
+            </section><!-- #resultats .row -->
+             
+            <!-- footer -->       
+            <footer>
+                 <a href="#">MathieuMT</a>
+                 <span>Copyright © 2020</span>
+                 <a href="#">Contact</a>
+            </footer>        
+        
+        </div> <!-- #wrapper .container-fluide -->
+                    
+        <!-- script -->   
         <script src="js/jquery-3.2.1.min.js"></script>
-    
+        
         <script src="js/diaporama.js"></script>
-           
-        <script src="js/markerclusterer.js"></script>    
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-Mdmnc9VFtG3ir-jj07pPMzeExtBg7Fo &callback=initMap" async defer></script>
-    
-        <script src="js/map.js"></script>
-    
+         
+        <script src="js/reservationSurCarte.js"></script> 
+         
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-Mdmnc9VFtG3ir-jj07pPMzeExtBg7Fo" async defer></script>
+     
+        <script src="js/markerclusterer.js"></script>
+        
         <script src="js/canvas.js"></script>
                    
-        <script src="js/countdown.js"></script>
-        
-        <script src="js/audio.js"></script>
-       
+
     </body>
     
 </html>
