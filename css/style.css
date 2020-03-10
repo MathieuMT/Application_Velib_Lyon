@@ -61,11 +61,7 @@ cite {
 
 #diaporama {
     width: 100%;
-<<<<<<< HEAD
 	overflow: hidden;
-=======
-    overflow: hidden;
->>>>>>> 5221ce1825cd6fac585eaa86ed400c4203be03f8
     position: relative;
 }
 
@@ -153,11 +149,7 @@ figure img {
 
 /*************************************************/
 /*                                               */
-<<<<<<< HEAD
 /*          --- div#btns_intermediaires ---         */
-=======
-/*     --- section #btns_intermediaires ---      */
->>>>>>> 5221ce1825cd6fac585eaa86ed400c4203be03f8
 /*                                               */
 /*************************************************/
 
@@ -503,11 +495,7 @@ figure img {
 
 /*************************************************/
 /*                                               */
-<<<<<<< HEAD
 /*           --- div#resultats ---          */
-=======
-/*           --- section #resultats ---          */
->>>>>>> 5221ce1825cd6fac585eaa86ed400c4203be03f8
 /*                                               */
 /*************************************************/
 
@@ -764,11 +752,7 @@ footer a:hover {
         margin-bottom: 0.5%;
     }
 
-<<<<<<< HEAD
 /*--- div#resultats ---*/
-=======
-/*--- section #resultats ---*/
->>>>>>> 5221ce1825cd6fac585eaa86ed400c4203be03f8
     
     /* style du pied de page contenant des messages et un compte à rebours */
     #resultats {

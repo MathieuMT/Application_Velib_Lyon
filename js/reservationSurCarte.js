@@ -366,10 +366,7 @@ class Createmap {
             // Si non on fait cela:
             else {
                 /* pour que le nom et le prénom soient conservés dans les inputs même si on ferme le navigateur grace à localStorage */
-<<<<<<< HEAD
                 
-=======
->>>>>>> 5221ce1825cd6fac585eaa86ed400c4203be03f8
                 let nom = JSON.parse(localStorage.getItem("dataNom"));
                 let prenom = JSON.parse(localStorage.getItem("dataPrenom"));
             
@@ -408,11 +405,7 @@ class Createmap {
 
     /* fonction pour faire scroller vers la zone de réservation sur la carte */
     reservation() {
-<<<<<<< HEAD
         $("#versReservation").on("click", () => {
-=======
-        $("#reservation").on("click", () => {
->>>>>>> 5221ce1825cd6fac585eaa86ed400c4203be03f8
             if(screen.width < 400){
                 $(document).ready(() => {
                     window.scrollTo(0, 250);
