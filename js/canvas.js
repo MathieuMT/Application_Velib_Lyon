@@ -12,6 +12,7 @@ class Canvas{
         this.controlTouch();
 		this.btnCleaning();
 		this.cleaning();
+       
      }
  
 	startPosition()  {
@@ -75,6 +76,7 @@ class Canvas{
 		Canvas.canvas.addEventListener("mouseleave", function(){
 			Canvas.finishedPosition();
 		});
+        
 	}
     
     /* POUR DESSINER SUR ECRAN TACTILE */
@@ -85,51 +87,58 @@ class Canvas{
         let mousePos = { x:0, y:0 };
         
 		 Canvas.canvas.addEventListener("touchstart", function (e) {
-            mousePos = Canvas.getTouchPos(Canvas.canvas, e);
-            let touch = e.touches[0];
-            let mouseEvent = new MouseEvent("mousedown", {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            Canvas.canvas.dispatchEvent(mouseEvent);
+             
+            if (e.target == Canvas.canvas) {
+                /* Empêcher scrolling sur le canvas */
+                e.preventDefault();
+
+                mousePos = Canvas.getTouchPos(Canvas.canvas, e);
+                let touch = e.touches[0];
+                let mouseEvent = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+
+                Canvas.canvas.dispatchEvent(mouseEvent);
+             }
+            
         }, false);
  
 		Canvas.canvas.addEventListener("touchmove", function (e) {
-            let touch = e.touches[0];
-            let mouseEvent = new MouseEvent("mousemove", {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            Canvas.canvas.dispatchEvent(mouseEvent);
+            
+            if (e.target == Canvas.canvas) {
+                /* Empêcher scrolling sur le canvas */
+                e.preventDefault();
+
+                let touch = e.touches[0];
+                let mouseEvent = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+
+                Canvas.canvas.dispatchEvent(mouseEvent);
+            }
+            
         }, false);
  
 		 Canvas.canvas.addEventListener("touchend", function (e) {
-            let mouseEvent = new MouseEvent("mouseup", {});
-            Canvas.canvas.dispatchEvent(mouseEvent);
+            
+            if (e.target == Canvas.canvas) {
+                /* Empêcher scrolling sur le canvas */
+                e.preventDefault();
+
+                let mouseEvent = new MouseEvent("mouseup", {});
+
+                Canvas.canvas.dispatchEvent(mouseEvent);
+             
+            }
         }, false);
         
-        
-        
-        /* Empêcher le défilement en touchant la toile */
-        document.body.addEventListener("touchstart", function (e) {
-          if (e.target == Canvas.canvas) {
-            e.preventDefault();
-          }
-        }, false);
-        
-        document.body.addEventListener("touchend", function (e) {
-          if (e.target == Canvas.canvas) {
-            e.preventDefault();
-          }
-        }, false);
-        
-        document.body.addEventListener("touchmove", function (e) {
-          if (e.target == Canvas.canvas) {
-            e.preventDefault();
-          }
-        }, false);   
     }
- 
+
+
+    
+    
     /* fonction du bouton effacer la toile */
 	btnCleaning(){
 		let Canvas = this;

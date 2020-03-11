@@ -149,7 +149,7 @@ figure img {
 
 /*************************************************/
 /*                                               */
-/*          --- div#btns_intermediaires ---         */
+/*       --- div#btns_intermediaires ---         */
 /*                                               */
 /*************************************************/
 
@@ -397,13 +397,13 @@ figure img {
     background-color: rgba(0,123,255,0.4);
     z-index: 1OOO;
     width: 100%; 
-    padding-top: 140%;
-    padding-bottom: 60%;
+    padding-top: 60%;
+    padding-bottom: 50%;
     height: 100%;
     overflow:hidden;
     margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 100%; left: 0; bottom: 0; right: 0;
 }
 
 /* toile-canvas */
@@ -426,7 +426,7 @@ figure img {
 
 /* Modal Content */
 .modal_content {
-    width: 45%;
+    width: 55%;
     background-color: coral;
     margin: auto;
     padding:0px 10px 20px 10px;
@@ -492,10 +492,9 @@ figure img {
     box-shadow: -4px -4px 2px #0a1c1e;
 }
 
-
 /*************************************************/
 /*                                               */
-/*           --- div#resultats ---          */
+/*             --- div#resultats ---             */
 /*                                               */
 /*************************************************/
 
@@ -626,11 +625,33 @@ footer a:hover {
         padding-right: 2%;
     }
     
-/*--- section #signature ---*/
+
+}
+
+
+@media screen and (max-width:812px) {
+    
+/*--- section #signature ---*/ 
+/* pour pouvoir signer sur iPhone X à l'horizontal */    
     #signature {
-        padding-top: 185%;/* pour que le background couvre bien toute la hauteur */
-        padding-bottom: 170%;
-    }    
+        padding-top: 120%;
+        padding-bottom: 210%;
+        position: absolute;
+        top: 100%;
+        flex: 1 1 55%;
+    }
+    
+    .modal_content {
+        width: 90%;
+    }
+    
+    /* positionnement du canvas */
+    #canvas {
+        marrgin-top:0.5%;
+        margin-bottom: 0.5%;
+    }
+    
+    
     
 }
 
@@ -664,14 +685,7 @@ footer a:hover {
         padding-bottom: 10%;
         padding-left: 5%;
         padding-right:  5%;
-    } 
-    
-/*--- section #signature ---*/
-    #signature {
-        padding-top: 145%;/* pour que le background couvre bien toute la hauteur */
-        padding-bottom: 125%;
-    }    
-
+    }   
 }
 
 @media screen and (max-width:576px) {
@@ -735,10 +749,12 @@ footer a:hover {
     }    
     
 /*--- section #signature ---*/ 
+/* pour pouvoir signer sur iPhone X à la verticale */        
     #signature {
-        top: 200%;
-        padding-top: 290%;
-        padding-bottom: 365%;
+        padding-top: 50%;
+        padding-bottom: 50%;
+        position: absolute;
+        top: 50%;
         flex: 1 1 55%; 
     }
     

@@ -77,7 +77,6 @@ class Createmap {
                 // LORSQU'ON CLIC SUR UN MARQUEUR SUR LA CARTE:
                 marker.addListener('click', function() {
                     
-                   
                     /* on redimensionne la carte au clic sur un marqueur */
                     $('#map').attr('class', 'col-sm-7 col-xs-12');  
                 
@@ -120,8 +119,10 @@ class Createmap {
                     
                     
                     /* si on clique sur un autre marqueur pendant une réservation en cours, on rend la carte inactive pour ne pas cumuler plusieurs réservation en même temps, en gardant les informations de notre résevation en cours, car après avoir cliquer sur le bouton "Réservez ici" on stocke en mémoir les informations grace à l'API webStorage qu'on récupère dans l'affichage dans la div#resultats */
+                    /*-----sessionStorage-----*/
                     let infosStation = 
                     JSON.parse(sessionStorage.getItem("datas"));
+                    /*------------------------*/
                     if (infosStation != null) {
                         document.getElementById('name').textContent = infosStation.name;
                         document.getElementById('address').textContent = infosStation.address;
@@ -129,21 +130,24 @@ class Createmap {
                         document.getElementById('bike_stands').textContent = infosStation.bikeStands;
                         document.getElementById('available_bikes').textContent = infosStation.availableBikes - 1;
                         document.getElementById('available_bike_stands').textContent = infosStation.availableBikeStands;
+                       
+                        /*-----localStorage-----*/
+                        /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après avoir fermé le navigateur dans les champs nom et prénom */
+                        let nom = JSON.parse(localStorage.getItem("nom"));
+                        document.getElementById('nom').value = nom;
 
-                        /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session dans les champs nom et prénom */
-                        /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session */
-                        let nom = JSON.parse(localStorage.getItem("dataNom"));
-                        document.getElementById('nom').value = nom.lastName;
-
-                        let prenom = JSON.parse(localStorage.getItem("dataPrenom"));
-                        document.getElementById('prenom').value = prenom.firstName;
-
+                        let prenom = JSON.parse(localStorage.getItem("prenom"));
+                        document.getElementById('prenom').value = prenom;
+                        /*---------------------*/
+                        
                         $("#btn-reserve").css('display', 'none');
                         $('#infos_station li p').css('color','#00b150');
 
-                        document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom.firstName + " " + nom.lastName + " à la station " + infosStation.name + " pendant: ";
+                        document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom + " à la station " + infosStation.name + " pendant: ";
+                        /*-----sessionStorage-----*/
                         // affichage du compte à rebours:
                         sessionStorageTimer();
+                        /*------------------------*/
                     }
 /***************************************************************************************************************************************************/
                        
@@ -162,27 +166,20 @@ class Createmap {
         
         /* fonction qui vide la session storage du navigateur concernant les infos de la station Vélo‘v: */
         let clearInfos = function() {
+            /*-----néttoyage de la sessionStorage-----*/
             sessionStorage.clear();
             $('#notification').html("");
         }   
 
-        /* fonctions qui sauvegardent les nom et prénom dans le navigateur */
-        let saveFieldName = function () {
-            let nom = {
-                lastName: document.getElementById('nom').value
-            };
-            localStorage.setItem("dataNom", JSON.stringify(nom));
-        }
-        
-        let saveFieldFirstName = function (){
-            let prenom = {
-                firstName: document.getElementById('prenom').value
-            };
-            localStorage.setItem("dataPrenom", JSON.stringify(prenom));
-        }
-
         // LORS DU CLIC SUR BOUTON "RESERVEZ ICI"
         $('#btn_reservation').click(function () {
+            /*-----localStorage-----*/
+            /* on sauvegarde les nom et prénom dans le navigateur */
+            let nom = document.getElementById('nom').value;
+            localStorage.setItem("nom", JSON.stringify(nom));
+            let prenom = document.getElementById('prenom').value;
+            localStorage.setItem("prenom", JSON.stringify(prenom));
+            /*----------------------*/
             // Si les champs de texte nom et prénom sont vides:
             if (document.getElementById('nom').value === "" || document.getElementById('prenom').value === "") {
                 
@@ -205,6 +202,7 @@ class Createmap {
                 c.cleaning();
                 c.controlMouse();
                 c.controlTouch();
+                
                 /* fermer la popup de signature avec la croix */
                 $('.close_canvas').click(function () {
                     $('#signature').css('display', 'none');
@@ -224,8 +222,10 @@ class Createmap {
                 c.btnCleaning();
                 
                 /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
+                /*-----sessionStorage-----*/
                 let infosStation = 
                 JSON.parse(sessionStorage.getItem("datas"));
+                /*------------------------*/
                 if (infosStation != null) {
                     document.getElementById('name').textContent = infosStation.name;
                     document.getElementById('address').textContent = infosStation.address;
@@ -234,14 +234,14 @@ class Createmap {
                     document.getElementById('available_bikes').textContent = infosStation.availableBikes - 1;
                     document.getElementById('available_bike_stands').textContent = infosStation.availableBikeStands;
                 }
-                /*---*/
+                /*-----localStorage-----*/
                 /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session */
-                let nom = JSON.parse(localStorage.getItem("dataNom"));
-                document.getElementById('nom').value = nom.lastName;
+                let nom = JSON.parse(localStorage.getItem("nom"));
+                document.getElementById('nom').value = nom;
 
-                let prenom = JSON.parse(localStorage.getItem("dataPrenom"));
-                document.getElementById('prenom').value = prenom.firstName;
-                /*---*/
+                let prenom = JSON.parse(localStorage.getItem("prenom"));
+                document.getElementById('prenom').value = prenom;
+                /*----------------------*/
                 $('#notification').html("");
             }  
         });
@@ -257,8 +257,10 @@ class Createmap {
             $('#btn_validation').css('display', 'none');
             
             /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
+            /*-----sessionStorage-----*/
             let infosStation = 
              JSON.parse(sessionStorage.getItem("datas"));
+            /*------------------------*/
             document.getElementById('available_bikes').textContent = infosStation.availableBikes;   
         })
 
@@ -285,18 +287,24 @@ class Createmap {
                 availableBikes: document.getElementById('available_bikes').textContent,
                 availableBikeStands: document.getElementById('available_bike_stands').textContent
             };
+            /*-----sessionStorage-----*/
             sessionStorage.setItem("datas", JSON.stringify(infosStation));
+            /*------------------------*/
         }
 
         // FONCTION QUI RESTORE LES DONNÉES EN MÉMOIRE LORS DU RAFRAÎCHISSEMENT DE LA PAGE WEB   
         let onRestore = function () {
             /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
+            /*-----sessionStorage-----*/
             let infosStation = JSON.parse(sessionStorage.getItem("datas"));
-            /*-----------*/
+            /*------------------------*/
+            
+            /*-----localStorage-----*/
             /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session */
-            let nom = JSON.parse(localStorage.getItem("dataNom"));
-            let prenom = JSON.parse(localStorage.getItem("dataPrenom"));
-            /*-----------*/
+            let nom = JSON.parse(localStorage.getItem("nom"));
+            let prenom = JSON.parse(localStorage.getItem("prenom"));
+            /*----------------------*/
+            
             /* si les champs du bloc d'informations de la station séléctionnées ne sont pas vides alors, on fait ceci :*/
             if (infosStation != null) {
                 /* redimensionner la carte au clic sur un marqueur */
@@ -349,13 +357,17 @@ class Createmap {
                 $('#available_bike_stands').css('color', '#00b150');
                 $('#available_bike_stands').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
                 
+                /*---localStorage---*/
                 /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session dans les champs nom et prénom */
-                document.getElementById('nom').value = nom.lastName;
-                document.getElementById('prenom').value = prenom.firstName;
-               /*-------*/
-                document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom.firstName + " " + nom.lastName +  " à la station " + infosStation.name + " pendant: ";
+                document.getElementById('nom').value = nom;
+                document.getElementById('prenom').value = prenom;
+               /*-------------------*/
+                
+                document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom +  " à la station " + infosStation.name + " pendant: ";
+                /*-----sessionStorage-----*/
                 // affichage du compte à rebours:
                 sessionStorageTimer();
+                /*------------------------*/
 
                 $('#annulation').click(function (){
                     $('#countdown').css('display', 'none');
@@ -364,26 +376,23 @@ class Createmap {
                 }); 
             }
             // Si non on fait cela:
-            else {
+            else  {
+                /*---localStorage---*/
                 /* pour que le nom et le prénom soient conservés dans les inputs même si on ferme le navigateur grace à localStorage */
-                
-                let nom = JSON.parse(localStorage.getItem("dataNom"));
-                let prenom = JSON.parse(localStorage.getItem("dataPrenom"));
-            
-                document.getElementById('nom').value = nom.lastName;
-                document.getElementById('prenom').value = prenom.firstName;
-                /*-------*/
-          }
+                let nom = JSON.parse(localStorage.getItem("nom"));
+                let prenom = JSON.parse(localStorage.getItem("prenom"));
+
+                document.getElementById('nom').value = nom;
+                document.getElementById('prenom').value = prenom;
+                /*-------------------*/
+            }
         }
         
         //LORS DU CLIC SUR BOUTON "CONFIRMATION"   
         $('#btn_validation').click(function() {
             /* appel de la fonction qui sauvegarde les données de la sation avec sessionStorage */
             onSauve();
-            /* appel de la fonction qui sauvegarde le nom de l'utilsateur avec localStorage */
-            saveFieldName();
-            /* appel de la fonction qui sauvegarde le prénom de l'utilsateur avec localStorage */
-            saveFieldFirstName();
+            
             /* appel de la fonction qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
             onRestore();
 
@@ -406,30 +415,29 @@ class Createmap {
     /* fonction pour faire scroller vers la zone de réservation sur la carte */
     reservation() {
         $("#versReservation").on("click", () => {
-            if(screen.width < 400){
+            if(screen.width < 576){
                 $(document).ready(() => {
-                    window.scrollTo(0, 250);
+                    window.scrollTo(0, 420);
                 });
             }
-            else if(screen.width < 800){
+            else if(screen.width < 812){
                 $(document).ready(() => {
-                    window.scrollTo(0, 450);
+                    window.scrollTo(0, 500);
                 });
             }
-            else if(screen.width < 1025){
+            else if(screen.width < 1024){
                 $(document).ready(() => {
-                    window.scrollTo(0, 570);
+                    window.scrollTo(0, 670);
                 });
             }
             else
                 $(document).ready(() => {
-                    window.scrollTo(0, 785);
+                    window.scrollTo(0, 820);
                 });
         });
     }
    
 }
-
 
 /******************************************** COUNTDOWN 20 MINUTES ********************************************/  
 
@@ -475,8 +483,10 @@ let Timer = {
         
         (this.elm).innerHTML = min + " " + secs;
         
+        /*-----sessionStorage-----*/
         sessionStorage.setItem('minStorage', min);
         sessionStorage.setItem('secStorage', secs);
+        /*------------------------*/
     }
 }
 
@@ -507,8 +517,10 @@ function sessionStorageTimer() {
     
     clearInterval(Timer.refreshIntervalId);
     
+    /*-----sessionStorage-----*/
     let minStorage = sessionStorage.getItem('minStorage');
     let secStorage = sessionStorage.getItem('secStorage');
+    /*------------------------*/
     
     let nbMinStorage = parseInt(minStorage, 10);
     let nbSecStorage = parseInt(secStorage, 10);
