@@ -27,11 +27,12 @@
     </head>
     
     <body>
-       
-        <div id="wrapper" class="container-fluide">
         
-            <!-- header -->
-            <div class="row">               
+        <!-- div#wrapper --> 
+        <div id="wrapper" class="container-fluide">
+                   
+            <div class="row"> 
+                <!-- header -->              
                 <header class="col-sm-12">
                     <div id="header">
                         <div id="titre_citation">
@@ -45,255 +46,140 @@
                </header><!-- .col-sm-12 -->   
             </div><!-- .row -->
 
-            <!-- section diaporama-->
-            <div class="row"> 
-            
+            <div class="row">
+                <!-- section#diaporama--> 
                 <section id="diaporama" class="col-sm-12 p-0 mx-auto">
-
                     <div id="diapositives">
-
                      <figure class="diapo">
-
                         <img src= "assets/img/diapositives/diapo_1.jpg" alt="Comment réserver un vélo"/>
-
                         <figcaption class="legende"><h2>Comment faire la réservation de votre Vélo’V?</h2></figcaption><!-- .legende -->
-
                      </figure><!-- .diapo -->
-
                      <figure class="diapo inactive">
-
                         <img src= "assets/img/diapositives/diapo_2.jpg" alt="choisir une station de vélo sur la carte"/>
-
                         <figcaption class="legende"><h2>1-Veuillez choisir une station de Vélo’V au marqueur vert sur la carte</h2></figcaption><!-- .legende -->
-
                      </figure><!-- .diapo .inactive -->
-
                      <figure class="diapo inactive">
-
                         <img src= "assets/img/diapositives/diapo_3.jpg" alt="Indiquer votre nom et prénom dans le formulaire"/>
-
                         <figcaption class="legende"><h2>2-S'il y a des Vélo’V disponibles à la station,<br>Indiquez vos nom et prénom dans les champs de texte</h2></figcaption><!-- .legende -->
-
                      </figure><!-- .diapo .inactive -->
-
                      <figure class="diapo inactive">
-
                         <img src= "assets/img/diapositives/diapo_4.jpg" alt="Signez pour réserver votre vélo"/>
-
                         <figcaption class="legende"><h2>3-Terminez en signant votre réservation</h2></figcaption><!-- .legende -->
                      </figure><!-- .diapo .inactive -->
-
                     </div><!-- #diapositives -->
-
-
-
                     <div id="boutons_diaporama">
-
                         <div id="btn_gauche" >
-
                           <i id="chevronGauche" class="fas fa-chevron-circle-left fa-3x"></i><!-- #chevronGauche .fas .fa-chevron-circle-left .fa-3x -->
-
                         </div><!-- #btn_gauche -->
-
                         <div id="btn_diapo">
-
                             <i id ="lecture" class="fas fa-play-circle fa-3x inactive"></i><!-- #lecture .fas .fa-play-circle .fa-3x .inactive -->
-
                             <i id="pause" class="fas fa-pause-circle fa-3x"></i><!-- #pause .fas .fa-pause-circle .fa-3x -->
-
                         </div><!-- #btn_diapo -->
-
-
                         <div id="btn_droite">
-
                           <i id="chevronDroite" class="fas fa-chevron-circle-right fa-3x"></i><!-- #chevronDroite .fas .fa-chevron-circle-right .fa-3x -->
-
                         </div><!-- #btn_droite -->
-
                     </div><!-- #boutons_diaporama -->             
-
-
-                </section><!-- #diaporama .col-sm-12 .p-0 mx-auto -->         
-
-
-                        
+                </section><!-- #diaporama .col-sm-12 .p-0 mx-auto -->                
             </div><!-- .row -->
-            
-            <!-- div#btns_intermediaires -->                      
-            <div class="row">
                    
+            <div class="row">
+                <!-- div#btns_intermediaires --> 
                 <div id="btns_intermediaires" class="col-sm-12">
-
                     <button id="versDiaporama">Diaporama</button>
                     <button id="versReservation">Réservation</button>
-
-                </div><!-- #btns_intermediaires .col-sm-12 -->
-                   
+                </div><!-- #btns_intermediaires .col-sm-12 -->     
             </div><!-- .row -->
-        
-        
-        
-        
-            <!-- section stations_map -->
-            <section id="stations_map" class="row">
-                
-                <!-- map -->
+
+            <!-- section#stations_map -->
+            <section id="stations_map" class="row justify-content-around">
+                <!--div#map -->
                 <div id="map"></div><!--#map-->
-                
-                <!-- infos_station-->
+                <!-- div#infos_station-->
                 <div id="infos_station" class="col-sm-5 col-xs-12">
                     <div id="titre_infos">
-                        <h2>Informations sur la station sélectionnée:</h2>
+                        <h3>Détails de la station:</h3>
                     </div><!-- #titre_infos -->
-                
                     <ul>
-
                         <li>
-
-                            <h3>Numéro - Nom de la station:</h3>
-
+                            <h4>Numéro - Nom:</h4>
                             <p id="name"></p><!-- #name -->
-
                         </li>
-
                         <li>
-
-                            <h3>Adresse de la station:</h3>
-
+                            <h4>Adresse:</h4>
                             <p id="address"></p><!-- #address-->
-
                         </li>
-
                         <li>
-
-                            <h3>Statut de la station:</h3>
-
+                            <h4>Statut:</h4>
                             <p id="status"></p><!-- #status -->
-
                         </li>
-
                         <li>
-
-                            <h3>Capacité de vélos:</h3>
-
+                            <h4>Capacité de vélos:</h4>
                             <p id="bike_stands"></p><!-- #bike_stands -->
-
                         </li>
-
                         <li>
-
-                            <h3>Vélo(s) disponible(s):</h3>
-
+                            <h4>Vélo(s) disponible(s):</h4>
                             <p id="available_bikes"></p><!-- #available_bikes -->
-
                         </li>
-
                         <li>
-
-                            <h3>Place(s) disponible(s):</h3>
-
+                            <h4>Place(s) disponible(s):</h4>
                             <p id="available_bike_stands"></p><!-- #available_bike_stands -->
-
                         </li>
-
                     </ul>
-                        
-                      
-                    <div id="reservation">
-                            
+                    <!-- div#reservation --> 
+                    <div id="reservation">   
                         <p>
                             <label for="nom">Nom :</label>
-                                 
                             <input type="text" name="nom" id="nom" placeholder="nom" required/><!-- #nom -->
-                              
                             <br>
-                               
-                            <label for="prenom">Prénom:</label>
-                                 
+                            <label for="prenom">Prénom:</label> 
                             <input type="text" name="prenom" id= "prenom" placeholder="prénom" required/><!-- #prenom -->
-                       
                         </p> 
-                               
                         <div class="modal">
-                            
                             <span class="close">&times;</span>
-                            
                             <p id="champsVides">Veuillez remplir vos nom et prénom</p>
-                            
                         </div><!-- .modal -->
-                         
                     </div><!-- #reservation --> 
-                      
+                    <!-- div#btn --> 
                     <div id="btn">
-
                         <div id="btn-reserve">
-
-                            <input id="btn_reservation" type="button" value="Réservez ici"/><!-- #btn_reservation -->
-
+                            <div id="btn_reservation">
+                                <a id="reserver" href="#titre_signature">Réservez ici</a><!-- #reserver -->
+                            </div><!-- #btn_reservation -->
                         </div><!-- #btn-reserve -->
-
                         <div id="off">
-
                             <input id="annulation" type="button" value="Annulez ici"/><!-- #annulation -->
-
                         </div><!-- #off -->
-
                     </div><!--#btn-->
-
                 </div><!-- #infos_station .col-sm-5 .col-xs-12 -->
-
-            </section><!-- #stations_map .row -->
+            </section><!-- #stations_map .row .justify-content-around -->
                    
              <!-- section signature -->     
-            <section id="signature">
-                     
-                <div class="modal_content">
-                          
+            <section id="signature">      
+                <div id="titre_signature" class="modal_content">
                     <span class="close_canvas">&times;</span><!-- .close_canvas -->
-                          
-                          
                     <div class="modal_header">
                         <h2>Signature</h2>
                     </div><!-- .modal_header -->
-
                     <div id="enveloppe-toile">
-
                     <canvas id="canvas">
-
                         Mettez à jour votre navigateur
-
                     </canvas><!-- #canvas -->
-
                     </div><!-- #enveloppe-toile -->
-
-
                         <div id="btn_signature">
-
-                            <input id="btn_validation" type="button" value="Confirmation"/><!-- #btn_validation -->
-                                
+                            <div id="btn_validation">
+                                <a id="confirmer" href="#resultats">Confirmation</a><!-- #confirmer -->
+                            </div><!-- #btn_validation -->
                             <input id="btn_effacer" type="button" value="Effacer"/><!-- #btn_effacer -->
-                                
-
                         </div><!-- #btn_signature -->
-                            
                 </div><!-- .modal_content -->
-                        
             </section><!-- #signature -->
-            
-            
-            
-            
+
             <!-- div#resultats -->
-            <div id="resultats" class="row">
-                
+            <div id="resultats" class="row">                
                 <div id="msg">
-
                     <p id="notification"></p><!-- #notification -->
-
                     <p id="countdown"></p><!-- #countdown -->
-
                 </div><!-- #msg -->
-    
             </div><!-- #resultats .row -->
              
             <!-- footer -->       
@@ -318,7 +204,6 @@
         
         <script src="js/canvas.js"></script>
                    
-
     </body>
     
 </html>

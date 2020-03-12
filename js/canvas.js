@@ -4,8 +4,8 @@ class Canvas{
 		this.canvas = document.querySelector("canvas");
 		this.cleanCanvas = document.getElementById("btn_effacer");
 		this.ctx = this.canvas.getContext("2d");
-		this.canvas.width = 310;
-		this.canvas.height = 140;
+		this.canvas.width = 300;
+		this.canvas.height = 150;
 		this.canvasBlank = true;
 		this.painting = false;
 		this.controlMouse();
@@ -42,14 +42,14 @@ class Canvas{
  
 	 cleaning() {
 		let Canvas = this;
-		Canvas.ctx.clearRect(0, 0, 310, 140);
+		Canvas.ctx.clearRect(0, 0, 300, 150);
 		Canvas.canvasBlank = true;
      }
  
     
     /* Obtenir la position d'une touche par rapport à la toile */
     getTouchPos(canvasDom, touchEvent) {
-        var rect = canvasDom.getBoundingClientRect();
+        let rect = canvasDom.getBoundingClientRect();
         return {
             x: touchEvent.touches[0].clientX - rect.left,
             y: touchEvent.touches[0].clientY - rect.top

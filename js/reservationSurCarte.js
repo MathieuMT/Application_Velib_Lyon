@@ -82,13 +82,13 @@ class Createmap {
                 
                     // pour les écrans inférieur à 576px 
                     if ($(window).width() <= 576) {  
-                        $('#map').css('height', '400px');
+                        $('#map').css('height', '670px');
                         $('#map').css('max-height', 'auto');
                         $("#infos_station").css('display', 'flex');
                     }
                     // pour les écran supérieur à 576px
                     else if($(window).width() > 576)  {
-                        $('#map').css('min-height', '400px');
+                        $('#map').css('min-height', '670px');
                         $('#map').css('height', 'auto');
                         $("#infos_station").css('display', 'flex');   
                     } 
@@ -312,13 +312,13 @@ class Createmap {
                 
                 // pour les écrans inférieur à 576px 
                 if ($(window).width() <= 576) {  
-                    $('#map').css('height', '400px');
+                    $('#map').css('height', '670px');
                     $('#map').css('max-height', 'auto');
                     $("#infos_station").css('display', 'flex');
                 }
                 // pour les écrans supérieur à 576px 
                 else if($(window).width() > 576)  {
-                    $('#map').css('min-height', '400px');
+                    $('#map').css('min-height', '670px');
                     $('#map').css('height', 'auto');
                     $("#infos_station").css('display', 'flex');   
                 } 
@@ -417,12 +417,12 @@ class Createmap {
         $("#versReservation").on("click", () => {
             if(screen.width < 576){
                 $(document).ready(() => {
-                    window.scrollTo(0, 420);
+                    window.scrollTo(0, 1600);
                 });
             }
             else if(screen.width < 812){
                 $(document).ready(() => {
-                    window.scrollTo(0, 500);
+                    window.scrollTo(0, 1400);
                 });
             }
             else if(screen.width < 1024){

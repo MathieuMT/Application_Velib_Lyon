@@ -198,7 +198,7 @@ figure img {
 #map {
     width: 100%;
     background-color: #007bff;
-    height: 400px;
+    height: 670px;
     border:  5px solid coral;
     margin: 5px;
     border-radius: 15px; 
@@ -231,7 +231,7 @@ figure img {
 }
 
 /* style du titre h2 contenant les informations pour chaque station Vélo’V */
-#infos_station h2 {
+#infos_station h3 {
     text-align: center;
     color:#007bff;
     text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
@@ -244,13 +244,17 @@ figure img {
 /* style de la liste non-ordonnée contenant les informations */
 #infos_station ul{
     list-style-type: none;
-    padding:5px;
+    padding:0;
+    margin: 0;
+    line-height: 0.5%;
+    margin-top: 10%;
 }
 
 /* style des titres h3 et label contenant les informations de chaque station Vélo’V */
-#infos_station li h3, #reservation label {
+#infos_station li h4, #reservation label {
     color:coral;
     text-shadow: 0.09em 0.1em 0.09em #0a1c1e; 
+    text-align: center;
 }
 
 /* style des paragraphes contenant les informations sur chaque station Vélo’V */
@@ -259,6 +263,18 @@ figure img {
     font-weight: bold;
     text-shadow: -1px -1px 1px coral;
     background-color: #007bff;
+}
+
+#infos_station li p#address, #infos_station li p#name {
+    line-height: 1.5em;
+}
+
+#reservation {
+    font-size: 1.4em;
+}
+
+#reservation p {
+    margin-bottom: 0;
 }
 
 /*champs nom et prénom*/
@@ -319,27 +335,27 @@ figure img {
 /* style du conteneur des boutons "Réservez ici" et "Annulez ici" */
 #btn {
     display:flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
 }
 
 /* style du conteneur du bouton "Réservez ici" */
 #btn-reserve {
     align-self: center;
     display:none;
-    margin-bottom: 55px;
+    margin-bottom: 5%;
 }
 
 /* style du bouton "Réservez ici"  */
 #btn_reservation{
     display: block;
-    background-color: coral;
+    background-color: white;
     text-align: center;
     font-size: 23px;
     font-weight: bold;
-    color:#007bff;
+    color:coral;
     text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
     border-radius: 15px;
-    border: 3px solid #007bff;
+    border: 3px solid coral;
     cursor:pointer;
     outline: 0;
 }
@@ -347,17 +363,28 @@ figure img {
 /* effet hover et active sur le bouton "Réservez ici" */
 #btn_reservation:hover,
 #btn_reservation:active {
-    background-color: #007bff;
-    color:coral;
+    background-color: coral;
+    color:#007bff;
     text-shadow: -1px -1px 1px #0a1c1e;
-    border: 3px solid coral;
+    border: 3px solid white;
     box-shadow: -4px -4px 2px #0a1c1e;
+}
+
+#btn_reservation a#reserver{
+    text-decoration: none;
+    margin: 5px;
+}
+
+#btn_reservation a#reserver:hover {
+    text-decoration: none;
+    color:#007bff;
+    opacity: 1;
 }
 
 /* style du conteneur du bouton "Annulez ici" */
 #off {
     align-self:center;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
 }
 
 /* style du bouton "Annulez ici" */
@@ -482,13 +509,24 @@ figure img {
     outline: 0;
 }
 
+#btn_validation a#confirmer {
+    text-decoration: none;
+    margin: 5px;
+}
+
+#btn_validation a#confirmer:hover {
+    text-decoration: none;
+    color:coral;
+    opacity: 1;
+}
+
 /* effet hover et active sur le bouton "Confirmation" et "Effacer" dans le panneau contenant le canvas pour la signature */
 #btn_validation:hover, #btn_effacer:hover,
 #btn_validation:active, #btn_effacer:active {
     background-color: #007bff;
     color:coral;
     text-shadow: -1px -1px 1px #0a1c1e;
-    border: 3px solid coral;
+    border: 3px solid white;
     box-shadow: -4px -4px 2px #0a1c1e;
 }
 
@@ -630,12 +668,25 @@ footer a:hover {
 
 
 @media screen and (max-width:812px) {
+
+/*--- div #infos_station ---*/
+    #reservation {
+        text-align: center;
+        margin: 3% auto;
+    }
+    #infos_station ul {
+        margin-top: 0;
+    }
     
+    input#nom, input#prenom {     
+        width: 80%;
+    }
+
 /*--- section #signature ---*/ 
 /* pour pouvoir signer sur iPhone X à l'horizontal */    
     #signature {
-        padding-top: 120%;
-        padding-bottom: 210%;
+        padding-top: 100%;
+        padding-bottom: 100%;
         position: absolute;
         top: 100%;
         flex: 1 1 55%;
@@ -754,7 +805,7 @@ footer a:hover {
         padding-top: 50%;
         padding-bottom: 50%;
         position: absolute;
-        top: 50%;
+        top: 0%;
         flex: 1 1 55%; 
     }
     
