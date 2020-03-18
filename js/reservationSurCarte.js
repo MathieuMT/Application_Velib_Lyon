@@ -2,9 +2,11 @@
 let mapObj;
 
 /* on instencie mapObj au chargement de la page à partir de la class Createmap: */
-window.onload = function(){
+window.onload = function () {
+    'use strict'; 
     mapObj = new Createmap;
 }; 
+
 
 // on définit la class Createmap
 class Createmap {
@@ -24,7 +26,7 @@ class Createmap {
             zoom: 12
         });
 
-        /* PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon */
+        /* chargez les données codées JSON à partir du serveur à l'aide d'une requête HTTPS GET dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon */
         $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0", function (reponse) {
         
             /* on définit le tableau Marker vide pour les futurs marqueurs */
@@ -438,6 +440,8 @@ class Createmap {
     }
    
 }
+
+
 
 /******************************************** COUNTDOWN 20 MINUTES ********************************************/  
 
