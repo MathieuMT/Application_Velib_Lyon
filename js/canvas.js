@@ -14,20 +14,23 @@ class Canvas{
 		this.cleaning();
        
      }
- 
+    
+    /* methode pour démarer la position du dessin */
 	startPosition()  {
         let Canvas = this;
 		Canvas.painting = true;  
 		Canvas.canvasBlank = false;
 		console.log(Canvas); 
 	 }
- 
+    
+    /* methode pour terminer la position du dessin */
 	finishedPosition() {
 		let Canvas = this;
         Canvas.painting = false;
 	    Canvas.ctx.beginPath();
 	}
 
+    /* methode dessiner */
 	draw(e) {
 		let Canvas = this;
 		if (!Canvas.painting) return;
@@ -39,8 +42,9 @@ class Canvas{
         Canvas.ctx.moveTo(e.offsetX, e.offsetY);
         Canvas.ctx.strokeStyle = "#007bff";
 	}
- 
-	 cleaning() {
+    
+    /* methode pour nettoyer dessin du canvas */
+	cleaning() {
 		let Canvas = this;
 		Canvas.ctx.clearRect(0, 0, 300, 150);
 		Canvas.canvasBlank = true;
@@ -57,7 +61,7 @@ class Canvas{
     }
 
  
-    /* FONCTION POUR DESSINER AVEC LA SOURIS */
+    /* METHODE POUR DESSINER AVEC LA SOURIS */
     controlMouse(){
         let Canvas = this;
  
@@ -79,7 +83,7 @@ class Canvas{
         
 	}
     
-    /* POUR DESSINER SUR ECRAN TACTILE */
+    /* METHODE POUR DESSINER SUR ECRAN TACTILE */
     controlTouch() {
         
         let Canvas = this;
@@ -139,7 +143,7 @@ class Canvas{
 
     
     
-    /* fonction du bouton effacer la toile */
+    /* methode qui nettoie le canvas au clic sur le bouton "effacer" */
 	btnCleaning(){
 		let Canvas = this;
 		Canvas.cleanCanvas.onclick = function (){ 
@@ -149,5 +153,5 @@ class Canvas{
  
 }  
 
-/* c est l'objet instancié de Canvas */
+/* c est l'objet instancié de la classe Canvas */
 let c = new Canvas();

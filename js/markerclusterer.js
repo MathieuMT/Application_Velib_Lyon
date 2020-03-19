@@ -1,3 +1,12 @@
+/* Script github pour les markerclusterer.js de googlearchive */
+/* https://github.com/googlearchive/js-marker-clusterer/blob/gh-pages/src/markerclusterer.js */
+/* Correction d'un bug où la carte n'était pas toujours plus récente lors d'un clic sur le cluster -> ligne 1067 */
+/* Script du regroupement de marqueurs - API JavaScript Maps */
+/* Le nombre sur un cluster indique le nombre de marqueurs qu'il contient. 
+Notez que lorsque vous zoomez sur l'un des emplacements de cluster, 
+le nombre sur le cluster diminue et vous commencez à voir les marqueurs individuels sur la carte.
+Un zoom arrière sur la carte consolide à nouveau les marqueurs en grappes.*/
+
 // ==ClosureCompiler==
 // @compilation_level ADVANCED_OPTIMIZATIONS
 // @externs_url https://raw.githubusercontent.com/google/closure-compiler/master/contrib/externs/maps/google_maps_api_v3.js
@@ -1055,6 +1064,7 @@ ClusterIcon.prototype.triggerClusterClick = function(event) {
   if (markerClusterer.isZoomOnClick()) {
     // Zoom into the cluster.
     this.map_.fitBounds(this.cluster_.getBounds());
+    this.map_.setCenter(this.cluster_.getCenter());
   }
 };
 

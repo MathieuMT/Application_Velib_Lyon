@@ -26,7 +26,10 @@ class Diaporama {
     /* methode pour faire défiler les diapositives de manière automatique: */
     diaporamaAuto() {
         for (let i = 0; i < this.diapo.length; i++) {
-            /* on démarre le diaporama à partir de la première image avec l'index égale à 0. si l'image n'est pas la dernière, on avance d'une image. on va à l'image spécifiée, on dit au diaporama à travers sa classe "inactive" quelles images il doit cacher pour afficher seulement celle qui n'a pas la classe "inactive". */
+            /* on démarre le diaporama à partir de la première image avec l'index égale à 0. 
+            si l'image n'est pas la dernière, on avance d'une image. 
+            on va à l'image spécifiée, on dit au diaporama à travers sa classe "inactive" 
+            quelles images il doit cacher pour afficher seulement celle qui n'a pas la classe "inactive". */
             this.diapo[i].classList.add("inactive");
         }
         if (this.imageIndex === this.diapo.length) {
@@ -38,7 +41,8 @@ class Diaporama {
             this.imageIndex = this.diapo.length - 1;
         }
         
-        // on dis au diaporama en supprimant la classe "inactive" du diapo spécifié quel image il doit afficher. on vas donc à l'image spécifiée en supprimant la classe "inactive" du diapo spécifié. 
+        /* on dis au diaporama en supprimant la classe "inactive" du diapo spécifié quelle image il doit afficher. 
+        on vas donc à l'image spécifiée en supprimant la classe "inactive" du diapo spécifié. */ 
         this.diapo[this.imageIndex].classList.remove("inactive");
     }
     
@@ -72,7 +76,8 @@ class Diaporama {
   
     
     
-    /* methode pour faire fonctionner le diaporama avec les flèches du clavier: ici e.key fonctionne mieux que e.keycode */
+    /* methode pour faire fonctionner le diaporama avec les flèches du clavier: 
+    ici e.key fonctionne mieux que e.keycode */
     flechesClavier(e) {
     switch (e.key) {
       case "ArrowRight":
@@ -97,12 +102,14 @@ class Diaporama {
         this.lecture.addEventListener("click", () => this.lectureDiapo());
         // clic sur le bouton pause
         this.pause.addEventListener("click", () => this.pauseDiapo());
-        // touches préssées des flèches de gauche et de droite du clavier
-        document.addEventListener("keydown", e => this.flechesClavier(e)); // ici keypress ne fonctionne pas avec les touches qui ne sont pas des caractères donc on utilise keydown
+
+        /* touches préssées des flèches de gauche et de droite du clavier. 
+        ici keypress ne fonctionne pas avec les touches qui ne sont pas des caractères donc on utilise keydown */
+        document.addEventListener("keydown", e => this.flechesClavier(e)); 
     }
     
     
-    /* methode pour retourner sur le diaporama quand on est sur la map */
+    /* methode pour retourner sur le diaporama quand on est sur la carte */
     versDiaporama() {
         $("#versDiaporama").on("click", () => {
           $(document).ready(() => {

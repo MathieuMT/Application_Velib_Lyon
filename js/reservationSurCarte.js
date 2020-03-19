@@ -1,13 +1,6 @@
 // on définit l'objet mapObj
 let mapObj;
 
-/* on instencie mapObj au chargement de la page à partir de la class Createmap: */
-window.onload = function () {
-    'use strict'; 
-    mapObj = new Createmap;
-}; 
-
-
 // on définit la class Createmap
 class Createmap {
     constructor() {
@@ -26,20 +19,22 @@ class Createmap {
             zoom: 12
         });
 
-        /* chargez les données codées JSON à partir du serveur à l'aide d'une requête HTTPS GET dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon */
+        /* chargez les données codées JSON à partir du serveur à l'aide d'une requête HTTPS GET 
+        dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon */
         $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0", function (reponse) {
         
             /* on définit le tableau Marker vide pour les futurs marqueurs */
             let markers = [];
         
-            /* on dédini l'objet iconsMarker pour les marqueurs représentant les stations de vélos ouvertes, fermé et sans vélos disponibles */
+            /* on dédini l'objet iconsMarker pour les marqueurs représentant les stations de vélos 
+            ouvertes avec vélos, ouvertes sans vélos disponibles et fermés */
             let iconsMarker = {
                 open: 'assets/img/marqueurs/open.png',
-                close: 'assets/img/marqueurs/closed.png',
-                noBike: 'assets/img/marqueurs/no_bike.png'
+                noBike: 'assets/img/marqueurs/no_bike.png',
+                close: 'assets/img/marqueurs/closed.png'
             }
         
-            /* on récupère les informations pour chaque station de vélo sur l'API JCDecaux */
+            /* on récupère les informations, les détails de l'état (les données clé = valeur) pour chaque station de vélo sur l'API JCDecaux */
             $.each(reponse, function(key, station) {
             
                 /* on définit chaque variable d'information de chaque station de vélo */
@@ -64,7 +59,8 @@ class Createmap {
                     map:map
                 };
             
-                /* conditions en fonction des status de la station et si des vélos sont disponibles à la station de vélo pour savoir quel marqueur indiquer : station ouverte, fermée ou sans vélo disponible */
+                /* conditions en fonction des status de la station et si des vélos sont disponibles à la station de vélo 
+                pour savoir quel marqueur indiquer : station ouverte avec vélos, ouverte sans vélos disponibles ou fermée */
                 if((status === 'OPEN') && (availableBikes > 0)) {
                     markerOptions.icon = iconsMarker.open;
                 }else if((status === 'OPEN') && (availableBikes === 0)) {
@@ -120,7 +116,11 @@ class Createmap {
 /******************************************** SÉCURITÉ POUR ÉVITER PLUSIEURS RÉSERVATION EN MÊME TEMPS *********************************************/
                     
                     
-                    /* si on clique sur un autre marqueur pendant une réservation en cours, on rend la carte inactive pour ne pas cumuler plusieurs réservation en même temps, en gardant les informations de notre résevation en cours, car après avoir cliquer sur le bouton "Réservez ici" on stocke en mémoir les informations grace à l'API webStorage qu'on récupère dans l'affichage dans la div#resultats */
+                    /* si on clique sur un autre marqueur pendant une réservation en cours, 
+                    on rend la carte inactive pour ne pas cumuler plusieurs réservation en même temps, 
+                    en gardant les informations de notre résevation en cours, 
+                    car après avoir cliquer sur le bouton "Réservez ici" on stocke en mémoire les informations 
+                    grace à l'API webStorage qu'on récupère dans l'affichage dans la div#resultats */
                     /*-----sessionStorage-----*/
                     let infosStation = 
                     JSON.parse(sessionStorage.getItem("datas"));
@@ -134,7 +134,8 @@ class Createmap {
                         document.getElementById('available_bike_stands').textContent = infosStation.availableBikeStands;
                        
                         /*-----localStorage-----*/
-                        /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après avoir fermé le navigateur dans les champs nom et prénom */
+                        /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur 
+                        même après avoir fermé le navigateur dans les champs nom et prénom */
                         let nom = JSON.parse(localStorage.getItem("nom"));
                         document.getElementById('nom').value = nom;
 
@@ -166,7 +167,7 @@ class Createmap {
 
 /******************************************** ACTIONS LORS D'UNE RÉSERVATION ********************************************/  
         
-        /* fonction qui vide la session storage du navigateur concernant les infos de la station Vélo‘v: */
+        /* methode qui vide la session storage du navigateur concernant les infos de la station Vélo‘v: */
         let clearInfos = function() {
             /*-----néttoyage de la sessionStorage-----*/
             sessionStorage.clear();
@@ -200,7 +201,7 @@ class Createmap {
             else {
                 $('#btn_reservation').css('display', 'block');   
                 $('#signature').css('display', 'flex');
-                /* fonctions de l'instance c de la class Canvas: */
+                /* methode de l'instance c de la class Canvas: */
                 c.cleaning();
                 c.controlMouse();
                 c.controlTouch();
@@ -214,7 +215,7 @@ class Createmap {
                 $('#btn_validation').click(function () {
                     $('#signature').css('display', 'none');
                 });
-                /* Effacer le contenu du canvas en appelant la fonction "effacerSignature" de la classe Canvas */
+                /* Effacer le contenu du canvas en appelant la methode "effacerSignature" de la classe Canvas */
                 $('#btn_effacer').click(function () {
                     c.btnCleaning();
                 });
@@ -279,7 +280,8 @@ class Createmap {
             document.getElementById("btn_effacer").style.display = "block";
         });
 
-        /* FONCTION QUI SAUVEGARDE DANS LA MÉMOIRE DU NAVIGATEUR EN sessionStorage LORS D'UNE SESSION, LES INFOS DE LA STATION SÉLECTIONNÉE DANS LE BLOC DES INFORMATIONS DE LA STATION SÉLECTIONNÉE */
+        /* METHODE QUI SAUVEGARDE DANS LA MÉMOIRE DU NAVIGATEUR EN sessionStorage LORS D'UNE SESSION, 
+        LES INFOS DE LA STATION SÉLECTIONNÉE DANS LE BLOC DES INFORMATIONS DE LA STATION SÉLECTIONNÉE */
         let onSauve = function() {
             let infosStation = {
                 name: document.getElementById('name').textContent,
@@ -294,7 +296,7 @@ class Createmap {
             /*------------------------*/
         }
 
-        // FONCTION QUI RESTORE LES DONNÉES EN MÉMOIRE LORS DU RAFRAÎCHISSEMENT DE LA PAGE WEB   
+        // METHODE QUI RESTORE LES DONNÉES EN MÉMOIRE LORS DU RAFRAÎCHISSEMENT DE LA PAGE WEB   
         let onRestore = function () {
             /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
             /*-----sessionStorage-----*/
@@ -360,14 +362,15 @@ class Createmap {
                 $('#available_bike_stands').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
                 
                 /*---localStorage---*/
-                /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session dans les champs nom et prénom */
+                /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur 
+                même après une session dans les champs texte nom et prénom */
                 document.getElementById('nom').value = nom;
                 document.getElementById('prenom').value = prenom;
                /*-------------------*/
                 
                 document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom +  " à la station " + infosStation.name + " pendant: ";
                 /*-----sessionStorage-----*/
-                // affichage du compte à rebours:
+                // methode d'affichage du compte à rebours:
                 sessionStorageTimer();
                 /*------------------------*/
 
@@ -380,7 +383,8 @@ class Createmap {
             // Si non on fait cela:
             else  {
                 /*---localStorage---*/
-                /* pour que le nom et le prénom soient conservés dans les inputs même si on ferme le navigateur grace à localStorage */
+                /* pour que le nom et le prénom soient conservés dans les inputs type texte 
+                même si on ferme le navigateur grace à localStorage */
                 let nom = JSON.parse(localStorage.getItem("nom"));
                 let prenom = JSON.parse(localStorage.getItem("prenom"));
 
@@ -392,10 +396,10 @@ class Createmap {
         
         //LORS DU CLIC SUR BOUTON "CONFIRMATION"   
         $('#btn_validation').click(function() {
-            /* appel de la fonction qui sauvegarde les données de la sation avec sessionStorage */
+            /* appel de la methode qui sauvegarde les données de la sation avec sessionStorage */
             onSauve();
             
-            /* appel de la fonction qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
+            /* appel de la methode qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
             onRestore();
 
             $('#resultats').css('display','flex');
@@ -406,15 +410,16 @@ class Createmap {
             let str ="1 vélo’v réservé par " + $('#prenom').val() + " " + $('#nom').val() + " à la station " +  $('#name').text() + " pendant: ";
             $('#notification').html(str);
             
-            init(); // METTRE UN TERNAIRE POUR UN SEUL CLIC.
+            /* appel de la méthode qui démarre le compte à rebours à 20 minutes et qui l'affiche dans #countdown */
+            init(); 
         })
        
         // LORSQU'ON RAFRAICHIT LA PAGE WEB:
-        /* appel de la fonction qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
+        /* appel de la méthode qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
         onRestore();
     }
 
-    /* fonction pour faire scroller vers la zone de réservation sur la carte */
+    /* méthode pour faire scroller vers la zone de réservation sur la carte */
     reservation() {
         $("#versReservation").on("click", () => {
             if(screen.width < 576){
@@ -441,6 +446,12 @@ class Createmap {
    
 }
 
+
+/* on instencie mapObj au chargement de la page à partir de la class Createmap: */
+window.onload = function () {
+    'use strict'; 
+    mapObj = new Createmap;
+}; 
 
 
 /******************************************** COUNTDOWN 20 MINUTES ********************************************/  
@@ -494,7 +505,7 @@ let Timer = {
     }
 }
 
-// ARRET DU COUNTDOWN
+// METHODE D'ARRET DU COUNTDOWN
 function stopTimer() {
     clearInterval(Timer.refreshIntervalId);
     $('#notification').text('');
@@ -502,7 +513,7 @@ function stopTimer() {
     $('#countdown').css('display', 'none');
 }
 
-// ANNULATION DE LA RÉSERVATION
+// METHODE D'ANNULATION DE LA RÉSERVATION
 function cancelTimer () {
     clearInterval(Timer.refreshIntervalId);
     $('#notification').html('');
@@ -510,13 +521,13 @@ function cancelTimer () {
     $('#countdown').css('display', 'none');
 }
     
-// INITIALISE LE COUNTDOWN à 20 MINUTES   
+// METHODE QUI INITIALISE LE COUNTDOWN à 20 MINUTES   
 function init() {
     clearInterval(Timer.refreshIntervalId);
     Timer.init(20,1,'countdown');
 }
 
-// STOCKAGE DU COUNTDOWN DANS LA MEMOIRE DU SESSION STORAGE DU NAVIGATEUR
+// METHODE DE STOCKAGE DU COUNTDOWN DANS LA MEMOIRE DU SESSION STORAGE DU NAVIGATEUR
 function sessionStorageTimer() {
     
     clearInterval(Timer.refreshIntervalId);
