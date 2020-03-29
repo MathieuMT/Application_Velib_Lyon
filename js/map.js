@@ -83,12 +83,16 @@ class Createmap {
                         $('#map').css('height', '670px');
                         $('#map').css('max-height', 'auto');
                         $("#infos_station").css('display', 'flex');
+                        /* pour défiler vers le bouton de réservation */
+                        window.location.href = "#btn_reservation";
                     }
                     // pour les écran supérieur à 576px
                     else if($(window).width() > 576)  {
                         $('#map').css('min-height', '670px');
                         $('#map').css('height', 'auto');
-                        $("#infos_station").css('display', 'flex');   
+                        $("#infos_station").css('display', 'flex');
+                        /* pour défiler vers le bouton de réservation */
+                        window.location.href = "#btn_reservation";
                     } 
 
                     /* on récupère les informations de chaque station dans les champs du bloc d'informations de la station sélectionnée sur la carte */
@@ -103,14 +107,14 @@ class Createmap {
                     if((status === 'OPEN') && (availableBikes > 0)) {
                         $('#infos_station li p').css('color','#00b150');
                         $('#infos_station li p').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
-                        $("#btn-reserve").css('display', 'block');
+                        $("#btn_reservation").css('display', 'block');
                         $('#notification').html("");
                     }else if((status === 'OPEN') && (availableBikes === 0)) {
                         $('#infos_station li p').css('color','#959595');
-                        $("#btn-reserve").css('display', 'none');
+                        $("#btn_reservation").css('display', 'none');
                     }else {
                         $('#infos_station li p').css('color','#fe0000');
-                        $("#btn-reserve").css('display', 'none');
+                        $("#btn_reservation").css('display', 'none');
                     }
                     
 /******************************************** SÉCURITÉ POUR ÉVITER PLUSIEURS RÉSERVATION EN MÊME TEMPS *********************************************/
@@ -124,6 +128,8 @@ class Createmap {
                     /*-----sessionStorage-----*/
                     let infosStation = 
                     JSON.parse(sessionStorage.getItem("datas"));
+                    
+                    
                     /*------------------------*/
                     if (infosStation != null) {
                         document.getElementById('name').textContent = infosStation.name;
@@ -143,14 +149,10 @@ class Createmap {
                         document.getElementById('prenom').value = prenom;
                         /*---------------------*/
                         
-                        $("#btn-reserve").css('display', 'none');
+                        $("#btn_reservation").css('display', 'none');
                         $('#infos_station li p').css('color','#00b150');
 
                         document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom + " à la station " + infosStation.name + " pendant: ";
-                        /*-----sessionStorage-----*/
-                        // affichage du compte à rebours:
-                        sessionStorageTimer();
-                        /*------------------------*/
                     }
 /***************************************************************************************************************************************************/
                        
@@ -170,6 +172,8 @@ class Createmap {
         /* methode qui vide la session storage du navigateur concernant les infos de la station Vélo‘v: */
         let clearInfos = function() {
             /*-----néttoyage de la sessionStorage-----*/
+            /* on recharge la page */
+            window.location.reload();
             sessionStorage.clear();
             $('#notification').html("");
         }   
@@ -252,20 +256,24 @@ class Createmap {
        
         // LORS DU CLIC SUR BOUTON "ANNULER"
         $('#annulation').click(function () {
-            cancelTimer (); /* annuler le compte à rebour */
-            c.cleaning(); /* nettoyer le canvas */
-            $('#countdown').css('display', 'none');
-            $('#annulation').css('display', 'none');
-            $('#btn_reservation').css('display', 'block');
-            $('#btn_validation').css('display', 'none');
-            
-            /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
-            /*-----sessionStorage-----*/
-            let infosStation = 
-             JSON.parse(sessionStorage.getItem("datas"));
-            /*------------------------*/
-            document.getElementById('available_bikes').textContent = infosStation.availableBikes;   
+                c.cleaning(); /* nettoyer le canvas */
+                $('#countdown').css('display', 'none');
+                $('#annulation').css('display', 'none');
+                /*$('#btn_reservation').css('display', 'block');*/
+                $('#btn_validation').css('display', 'none');
+                clearInfos();
         })
+        
+        // POPUP D'EXPIRATION: si on clic sur la croix ou le bouton "Faites une nouvelle réservation"
+        
+        $('.close_expiration').click(function () {
+            clearInfos();
+        })
+        
+        $('#btnNouvelleReservation').click(function () {
+            clearInfos();
+        })
+        
 
         /* DÉCLIC SUR LE CANVAS POUR FAIRE APPARAITRE LES BOUTONS "Confirmation" ET "Effacer" SUR LA POPUP DU CANVAS */
         // avec la souris
@@ -298,6 +306,7 @@ class Createmap {
 
         // METHODE QUI RESTORE LES DONNÉES EN MÉMOIRE LORS DU RAFRAÎCHISSEMENT DE LA PAGE WEB   
         let onRestore = function () {
+            
             /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
             /*-----sessionStorage-----*/
             let infosStation = JSON.parse(sessionStorage.getItem("datas"));
@@ -327,11 +336,11 @@ class Createmap {
                     $("#infos_station").css('display', 'flex');   
                 } 
 
-                $("#btn-reserve").css('display', 'none');
+                $("#btn_reservation").css('display', 'none');
                 $('#annulation').css('display', 'block');
                 
                 $('#annulation').click(function (){
-                    $("#btn-reserve").css('display', 'block');
+                    $("#btn_reservation").css('display', 'block');
                     $('#annulation').css('display', 'none'); 
                 } ); 
                 
@@ -369,15 +378,11 @@ class Createmap {
                /*-------------------*/
                 
                 document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom +  " à la station " + infosStation.name + " pendant: ";
-                /*-----sessionStorage-----*/
-                // methode d'affichage du compte à rebours:
-                sessionStorageTimer();
-                /*------------------------*/
 
                 $('#annulation').click(function (){
                     $('#countdown').css('display', 'none');
                     clearInfos(); /* on vide les données d'informations de la station sauvegardés en sessioStorage */
-                    cancelTimer (); /* annuler le compte à rebour */   
+                    $('#btn_reservation').css('display', 'block');
                 }); 
             }
             // Si non on fait cela:
@@ -391,7 +396,11 @@ class Createmap {
                 document.getElementById('nom').value = nom;
                 document.getElementById('prenom').value = prenom;
                 /*-------------------*/
+                
             }
+            
+            
+            
         }
         
         //LORS DU CLIC SUR BOUTON "CONFIRMATION"   
@@ -401,17 +410,25 @@ class Createmap {
             
             /* appel de la methode qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
             onRestore();
-
+            
+            
+            
             $('#resultats').css('display','flex');
             $('#countdown').css('display', 'block');
             $('#annulation').css('display', 'block');
-            $('#btn_reservation').css('display', 'none'); 
+            $('#btn_reservation').css('display', 'none');
+            
             $('#notification').html("");
             let str ="1 vélo’v réservé par " + $('#prenom').val() + " " + $('#nom').val() + " à la station " +  $('#name').text() + " pendant: ";
             $('#notification').html(str);
             
             /* appel de la méthode qui démarre le compte à rebours à 20 minutes et qui l'affiche dans #countdown */
+            /*
+            countdown.showTimer();
+            */
+            /*
             init(); 
+            */
         })
        
         // LORSQU'ON RAFRAICHIT LA PAGE WEB:
@@ -453,94 +470,3 @@ window.onload = function () {
     mapObj = new Createmap;
 }; 
 
-
-/******************************************** COUNTDOWN 20 MINUTES ********************************************/  
-
-// OBJET Timer:
-let Timer = {
-    minutes: 0,
-    seconds: 0,
-    elm: null,
-    refreshIntervalId: null,
-    init: function (m,s,elm) {
-    m = parseInt(m,10);
-    s = parseInt(s,10);
-        
-        if(m < 0 || s < 0) {
-            alert('Invalid Value'); 
-            return;
-        }
-        
-        this.minutes = m;
-        this.seconds = s;
-        this.elm = document.getElementById(elm);
-        Timer.start();
-    },
-    start: function () {
-        this.refreshIntervalId = setInterval((this.doCountDown), 1000);
-    },
-    doCountDown: function() {
-        if (Timer.seconds == 0) {
-            if (Timer.minutes == 0) {
-                stopTimer();
-                return;
-            } else {
-                Timer.seconds = 60;
-                Timer.minutes--;
-            }
-        }
-        Timer.seconds--;
-        Timer.updateTimer(Timer.minutes, Timer.seconds);
-    },
-    updateTimer: function (min, secs) {
-        min = min + ' minute' + (min > 1 ? 's' : '');
-        secs = secs + ' seconde' + (secs > 1 ? 's' : '');
-        
-        (this.elm).innerHTML = min + " " + secs;
-        
-        /*-----sessionStorage-----*/
-        sessionStorage.setItem('minStorage', min);
-        sessionStorage.setItem('secStorage', secs);
-        /*------------------------*/
-    }
-}
-
-// METHODE D'ARRET DU COUNTDOWN
-function stopTimer() {
-    clearInterval(Timer.refreshIntervalId);
-    $('#notification').text('');
-    $('#notification').text('RÉSERVATION EXPIRÉE (cliquer sur le bouton "Annulez ici" pour renouveler une réservation d\'1 vélo’v)');
-    $('#countdown').css('display', 'none');
-}
-
-// METHODE D'ANNULATION DE LA RÉSERVATION
-function cancelTimer () {
-    clearInterval(Timer.refreshIntervalId);
-    $('#notification').html('');
-    $('#notification').html("La réservation de votre vélo’v à la station " + $('#name').text() + " vient d'être ANNULÉE (en cliquant sur \"Réservez ici\" vous pouvez réserver un nouveau vélo’v)");
-    $('#countdown').css('display', 'none');
-}
-    
-// METHODE QUI INITIALISE LE COUNTDOWN à 20 MINUTES   
-function init() {
-    clearInterval(Timer.refreshIntervalId);
-    Timer.init(20,1,'countdown');
-}
-
-// METHODE DE STOCKAGE DU COUNTDOWN DANS LA MEMOIRE DU SESSION STORAGE DU NAVIGATEUR
-function sessionStorageTimer() {
-    
-    clearInterval(Timer.refreshIntervalId);
-    
-    /*-----sessionStorage-----*/
-    let minStorage = sessionStorage.getItem('minStorage');
-    let secStorage = sessionStorage.getItem('secStorage');
-    /*------------------------*/
-    
-    let nbMinStorage = parseInt(minStorage, 10);
-    let nbSecStorage = parseInt(secStorage, 10);
-    
-    Timer.init(Number(nbMinStorage),Number(nbSecStorage),'countdown');
-}                                   
- 
- 

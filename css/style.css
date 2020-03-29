@@ -342,7 +342,7 @@ figure img {
 /* style du conteneur du bouton "Réservez ici" */
 #btn-reserve {
     align-self: center;
-    display:none;
+    display:block;
     margin-bottom: 5%;
 }
 
@@ -372,6 +372,7 @@ figure img {
 }
 
 #btn_reservation a#reserver{
+    display: inline-block;
     text-decoration: none;
     margin: 5px;
 }
@@ -533,6 +534,70 @@ figure img {
 
 /*************************************************/
 /*                                               */
+/*     --- section #sectionExpiration ---        */
+/*                                               */
+/*************************************************/
+
+/* style de la popup d'expiration */
+#sectionExpiration {
+    display: none; /* flex; */
+    background-color: rgba(0,123,255,0.4);
+    z-index: 2OOO;
+    width: 100%; 
+    padding-top: 60%;
+    padding-bottom: 50%;
+    height: 100%;
+    overflow:hidden;
+    margin: auto;
+    position: absolute;
+    top: 100%; left: 0; bottom: 0; right: 0;
+}
+
+
+.close_expiration {
+    color: #007bff;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+}
+  
+.close_expiration:hover{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#nouvelleReservation {
+    display: flex;
+    justify-content:center;
+    padding-top: 3%;
+}
+
+#btnNouvelleReservation {
+    display: block;
+    background-color: coral;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color:#007bff;
+    text-shadow: 0.09em 0.1em 0.09em #0a1c1e;
+    border-radius: 15px;
+    border: 3px solid #007bff;
+    cursor:pointer;
+    outline: 0;
+}
+
+#btnNouvelleReservation:hover {
+    background-color: #007bff;
+    color:coral;
+    text-shadow: -1px -1px 1px #0a1c1e;
+    border: 3px solid white;
+    box-shadow: -4px -4px 2px #0a1c1e;
+}
+
+/*************************************************/
+/*                                               */
 /*             --- div#resultats ---             */
 /*                                               */
 /*************************************************/
@@ -660,8 +725,12 @@ footer a:hover {
         padding-left: 2%;
         padding-right: 2%;
     }
-    
-
+/*--- section #sectionExpiration ---*/
+    #sectionExpiration {
+        width: 100%; 
+        padding-top: 30%;
+        padding-bottom: 100%;
+    }      
 }
 
 
@@ -712,7 +781,12 @@ footer a:hover {
         marrgin-top:0.5%;
         margin-bottom: 0.5%;
     }
-    
+/*--- section #sectionExpiration ---*/
+    #sectionExpiration {
+        width: 100%; 
+        padding-top: 150%;
+        padding-bottom: 100%;
+    }    
     
     
 }
@@ -743,7 +817,13 @@ footer a:hover {
         padding-top: 5%;
         padding-left: 5%;
         padding-right: 5%;
-    }   
+    }
+/*--- section #sectionExpiration ---*/
+    #sectionExpiration {
+        width: 100%; 
+        padding-top: 60%;
+        padding-bottom: 50%;
+    }  
 }
 
 @media screen and (max-width:576px) {
@@ -826,7 +906,12 @@ footer a:hover {
         margin-top:0.5%;
         margin-bottom: 0.5%;
     }
-
+/*--- section #sectionExpiration ---*/
+    #sectionExpiration {
+        width: 100%; 
+        padding-top: 100%;
+        padding-bottom: 250%;
+    }  
 /*--- div#resultats ---*/
     
     /* style du pied de page contenant des messages et un compte à rebours */
