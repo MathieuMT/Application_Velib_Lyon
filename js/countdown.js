@@ -4,7 +4,7 @@ class Countdown {
         this.notification = document.getElementById('notification');
         this.annulation = document.getElementById('annulation');
         this.validation = document.getElementById('btn_validation');
-        this.reset = -1;
+        this.reset = null;
         this.showTimer();
         this.timerOnLoad();        
     }
@@ -13,20 +13,18 @@ class Countdown {
     showTimer() {
         console.log('showTimer');
         this.validation.addEventListener('click', () => {
-            let twentyMinutes = 60 * 20, /* 60 secondes x 20 minutes  */
-            display = document.getElementById('countdown');
-            this.startTimer(twentyMinutes, display);
+            let display = document.getElementById('countdown');
+            this.startTimer(20,0, display)
             this.stopTimer();
         })
     }
     
     /*** MÉTHODE POUR DÉMARRER LE COMPTE À REBOURS ***/
-    startTimer(duration, display) {
-        console.log('startTimer');
-        let timer = duration, minutes, seconds;    
+    startTimer(minutes, seconds, display) {
+        console.log('startTimer');   
         this.reset = setInterval(function() {
-            minutes = parseInt(timer / 60, 10)
-            seconds = parseInt(timer % 60, 10);
+            minutes = parseInt(minutes, 10)
+            seconds = parseInt(seconds, 10);
  
             sessionStorage.setItem('minutes', minutes);
             sessionStorage.setItem('seconds', seconds);
@@ -35,34 +33,42 @@ class Countdown {
                 minutes : sessionStorage.getItem('minutes'),
                 seconds : sessionStorage.getItem('seconds'),
             }
-            console.log('startTimer-sessionStorage.getItem.countdown.minutes:  ' + countdown.minutes);
-            console.log('startTimer-sessionStorage.getItem.countdown.seconds:  ' + countdown.seconds);
+            console.log('startTimer-sessionStorage.getItem:  ' + countdown.minutes);
+            console.log('startTimer-sessionStorage.getItem:  ' + countdown.seconds);
             
             countdown.minutes = countdown.minutes + ' minute' + (countdown.minutes > 1 ? 's' : '');
             countdown.seconds = countdown.seconds + ' seconde' + (countdown.seconds > 1 ? 's' : '');
  
             display.textContent = countdown.minutes + ' ' + countdown.seconds ;//
-
-            if (--timer < 0) {
-                timer = duration;
-            } 
-            if (timer === 0){
-                duration = 0;
-                clearInterval(this.reset);
-                sessionStorage.clear(); 
-                document.getElementById('notification').innerHTML = ' ';
-                $('#annulation').css('display', 'none');
-                $('#countdown').css('display', 'none');
-                $('#sectionExpiration').css('display', 'flex');
-                /* pour défiler vers la popup d'expiration sur les petits ecrans */
-                if ($(window).width() <= 576 ) { 
-                    $(window).scrollTop($('#sectionExpiration'));
-                }
-                
+            
+            if(minutes < 0 || seconds < 0) {
+                alert('Invalid Value'); 
+                return;
             }
+            
+            if (seconds == 0) {
+                if (minutes == 0) {
+                    clearInterval(this.reset);
+                    sessionStorage.clear(); 
+                    document.getElementById('notification').innerHTML = ' ';
+                    $('#annulation').css('display', 'none');
+                    $('#countdown').css('display', 'none');
+                    $('#sectionExpiration').css('display', 'flex');
+                    /* pour défiler vers la popup d'expiration sur les petits ecrans */
+                    if ($(window).width() <= 576 ) { 
+                        $(window).scrollTop($('#sectionExpiration'));
+                    }
+                    return;
+                } else {
+                    seconds = 60;
+                    minutes--;
+                }
+            }
+            seconds--;
             
         }, 1000);
     }
+    
     
     /*** MÉTHODE POUR AFFICHER LE COMPTE À REBOURS APRÈS LE RAFRAICHISSEMENT DE LA PAGE ***/
     timerOnLoad() {
@@ -70,10 +76,9 @@ class Countdown {
         let that = this;
         let minutes = sessionStorage.getItem('minutes'),
             seconds = sessionStorage.getItem('seconds'),
-            timer_amount = parseInt(minutes * 60) + parseInt(seconds),
             display = document.getElementById('countdown');
-        console.log('timerOnLoad-sessionStorage.getItem.minutes:  ' + minutes);
-        console.log('timerOnLoad-sessionStorage.getItem.seconds:  ' + seconds);
+        console.log('timerOnLoad-sessionStorage.minutes:  ' + sessionStorage.minutes);
+        console.log('timerOnLoad-sessionStorage.seconds:  ' + sessionStorage.seconds);
         
         /* AFFICHAGE DU COUNTDOWN APRÈS LE RAFRAICHISSEMENT DE LA PAGE */
         if (sessionStorage.minutes < 20) {
@@ -83,7 +88,7 @@ class Countdown {
                         
             display.textContent = minutes + ' ' + seconds ;//
  
-            that.reset = setInterval(that.storageTimer(timer_amount, display), 1000);    
+            that.reset = setInterval(that.storageTimer(minutes, seconds, display), 1000);    
                 
             this.annulation.addEventListener('click', () => {
                 clearInterval(that.reset);                    
@@ -92,7 +97,7 @@ class Countdown {
             })
                 
         } else if ( sessionStorage.minutes === 0 && sessionStorage.seconds === 0) {
-                
+            console.log(sessionStorage.minutes); 
             that.reset = setInterval(that.storageTimer(timer_amount, display), 1000);
             clearInterval(that.reset);
             sessionStorage.clear(); 
@@ -100,12 +105,11 @@ class Countdown {
     }     
     
     /*** MÉTHODE POUR DÉMARRER LE COMPTE À REBOURS APRÈS LE RAFRAICHISSEMENT DE LA PAGE***/
-    storageTimer(duration, display) {
+    storageTimer(minutes, seconds, display) {
         console.log('storageTimer');
-        let timer = duration, minutes, seconds;    
         this.reset = setInterval(function() {
-            minutes = parseInt(timer / 60, 10)
-            seconds = parseInt(timer % 60, 10);
+            minutes = parseInt(minutes, 10)
+            seconds = parseInt(seconds, 10);
             
             sessionStorage.setItem('minutes', minutes);
             sessionStorage.setItem('seconds', seconds);
@@ -116,8 +120,8 @@ class Countdown {
                 seconds : sessionStorage.getItem('seconds'),
             }
             
-            console.log('storageTimer-sessionStorage.getItem.countdown.minutes:  ' + countdown.minutes);
-            console.log('storageTimer-sessionStorage.getItem.countdown.seconds:  ' + countdown.seconds);
+            console.log('storageTimer-sessionStorage.getItem:  ' + countdown.minutes);
+            console.log('storageTimer-sessionStorage.getItem:  ' + countdown.seconds);
             
             let display = document.getElementById('countdown');
             
@@ -126,22 +130,31 @@ class Countdown {
             
             display.textContent = countdown.minutes + ' ' + countdown.seconds ;//
             
-            if (--timer < 0) {
-                timer = duration;
-            } 
-            if (timer === 0 ) {
-                duration = 0;
-                clearInterval(this.reset);
-                sessionStorage.clear(); 
-                document.getElementById('notification').innerHTML = ' ';
-                $('#annulation').css('display', 'none');
-                $('#countdown').css('display', 'none');
-                $('#sectionExpiration').css('display', 'flex');
-                /* pour défiler vers la popup d'expiration sur les petits ecrans */
-                if ($(window).width() <= 576 ) { 
-                    $(window).scrollTop($('#sectionExpiration'));
+            if(minutes < 0 || seconds < 0) {
+                alert('Invalid Value'); 
+                return;
+            }
+            
+            if (seconds == 0) {
+                if (minutes == 0) {
+                    clearInterval(this.reset);
+                    sessionStorage.clear(); 
+                    document.getElementById('notification').innerHTML = ' ';
+                    $('#annulation').css('display', 'none');
+                    $('#countdown').css('display', 'none');
+                    $('#sectionExpiration').css('display', 'flex');
+                    /* pour défiler vers la popup d'expiration sur les petits ecrans */
+                    if ($(window).width() <= 576 ) { 
+                        $(window).scrollTop($('#sectionExpiration'));
+                    }
+                    return;
+                } else {
+                    seconds = 60;
+                    minutes--;
                 }
             }
+            seconds--;
+            
 
         }, 1000);
     }
