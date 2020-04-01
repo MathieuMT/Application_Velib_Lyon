@@ -424,15 +424,13 @@ figure img {
 #signature {
     display:none;
     background-color: rgba(0,123,255,0.4);
-    z-index: 1OOO;
     width: 100%; 
-    padding-top: 60%;
-    padding-bottom: 50%;
+    padding-top: 70%;
+    padding-bottom: 38%;
     height: 100%;
-    overflow:hidden;
     margin: auto;
     position: absolute;
-    top: 100%; left: 0; bottom: 0; right: 0;
+    top: 0;
 }
 
 /* toile-canvas */
@@ -542,15 +540,13 @@ figure img {
 #sectionExpiration {
     display: none; /* flex; */
     background-color: rgba(0,123,255,0.4);
-    z-index: 2OOO;
     width: 100%; 
-    padding-top: 60%;
-    padding-bottom: 50%;
+    padding-top: 80%;
+    padding-bottom: 28%;
     height: 100%;
-    overflow:hidden;
     margin: auto;
     position: absolute;
-    top: 100%; left: 0; bottom: 0; right: 0;
+    top: 0;
 }
 
 
@@ -725,11 +721,16 @@ footer a:hover {
         padding-left: 2%;
         padding-right: 2%;
     }
+/*--- section #signature ---*/
+    #signature {
+        padding-top: 100%;
+        padding-bottom: 45%;
+    }
 /*--- section #sectionExpiration ---*/
     #sectionExpiration {
         width: 100%; 
-        padding-top: 30%;
-        padding-bottom: 100%;
+        padding-top: 100%;
+        padding-bottom: 50%;
     }      
 }
 
@@ -766,26 +767,18 @@ footer a:hover {
 /* pour pouvoir signer sur iPhone X à l'horizontal */    
     #signature {
         padding-top: 100%;
-        padding-bottom: 100%;
-        position: absolute;
-        top: 100%;
-        flex: 1 1 55%;
+        padding-bottom: 65%;
     }
     
     .modal_content {
         width: 90%;
     }
     
-    /* positionnement du canvas */
-    #canvas {
-        marrgin-top:0.5%;
-        margin-bottom: 0.5%;
-    }
 /*--- section #sectionExpiration ---*/
     #sectionExpiration {
         width: 100%; 
-        padding-top: 150%;
-        padding-bottom: 100%;
+        padding-top: 100%;
+        padding-bottom: 65%;
     }    
     
     
@@ -818,11 +811,16 @@ footer a:hover {
         padding-left: 5%;
         padding-right: 5%;
     }
+/*--- section #signature ---*/ 
+    #signature {
+        padding-top: 100%;
+        padding-bottom: 65%;
+    }
 /*--- section #sectionExpiration ---*/
     #sectionExpiration {
         width: 100%; 
-        padding-top: 60%;
-        padding-bottom: 50%;
+        padding-top: 100%;
+        padding-bottom: 70%;
     }  
 }
 
@@ -890,27 +888,19 @@ footer a:hover {
 /*--- section #signature ---*/ 
 /* pour pouvoir signer sur iPhone X à la verticale */        
     #signature {
-        padding-top: 50%;
-        padding-bottom: 50%;
-        position: absolute;
-        top: 0%;
-        flex: 1 1 55%; 
+        padding-top: 270%;
+        padding-bottom: 180%;
     }
     
     .modal_content {
         width: 90%;
     }
     
-    /* positionnement du canvas */
-    #canvas {
-        margin-top:0.5%;
-        margin-bottom: 0.5%;
-    }
 /*--- section #sectionExpiration ---*/
     #sectionExpiration {
         width: 100%; 
         padding-top: 100%;
-        padding-bottom: 250%;
+        padding-bottom: 180%;
     }  
 /*--- div#resultats ---*/
     

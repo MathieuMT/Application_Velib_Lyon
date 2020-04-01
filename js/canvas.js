@@ -1,4 +1,4 @@
-/* on définit la classe Canvas */ 
+ /* on définit la classe Canvas */ 
 class Canvas{
 	constructor(){
 		this.canvas = document.querySelector("canvas");
