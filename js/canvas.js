@@ -96,7 +96,7 @@ class Canvas{
                 /* Empêcher scrolling sur le canvas */
                 e.preventDefault();
 
-                mousePos = Canvas.getTouchPos(Canvas.canvas, e);
+                
                 let touch = e.touches[0];
                 let mouseEvent = new MouseEvent("mousedown", {
                     clientX: touch.clientX,
@@ -113,7 +113,7 @@ class Canvas{
             if (e.target == Canvas.canvas) {
                 /* Empêcher scrolling sur le canvas */
                 e.preventDefault();
-                mousePos = Canvas.getTouchPos(Canvas.canvas, e);
+                
                 let touch = e.touches[0];
                 let mouseEvent = new MouseEvent("mousemove", {
                     clientX: touch.clientX,
