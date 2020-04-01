@@ -50,17 +50,6 @@ class Canvas{
 		Canvas.canvasBlank = true;
      }
  
-    
-    /* Obtenir la position d'une touche par rapport à la toile */
-    getTouchPos(canvasDom, touchEvent) {
-        let rect = canvasDom.getBoundingClientRect();
-        return {
-            x: touchEvent.touches[0].clientX - rect.left,
-            y: touchEvent.touches[0].clientY - rect.top
-        };
-    }
-
- 
     /* METHODE POUR DESSINER AVEC LA SOURIS */
     controlMouse(){
         let Canvas = this;
@@ -99,6 +88,7 @@ class Canvas{
                 
                 let touch = e.touches[0];
                 let mouseEvent = new MouseEvent("mousedown", {
+                    /* la position de la touche par rapport au canvas */
                     clientX: touch.clientX,
                     clientY: touch.clientY
                 });
@@ -116,6 +106,7 @@ class Canvas{
                 
                 let touch = e.touches[0];
                 let mouseEvent = new MouseEvent("mousemove", {
+                    /* la position de la touche par rapport au canvas */
                     clientX: touch.clientX,
                     clientY: touch.clientY
                 });
