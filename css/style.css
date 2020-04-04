@@ -818,10 +818,8 @@ footer a:hover {
     }
 /*--- section #signature ---*/ 
     #signature {
-        position: absolute;
-        top:0;
-        padding-top: 0;
-        padding-bottom: 180%;
+        height: 100%;
+        padding-top: 100%;
     }
 /*--- section #sectionExpiration ---*/
     #sectionExpiration {
@@ -895,10 +893,9 @@ footer a:hover {
 /*--- section #signature ---*/ 
 /* pour pouvoir signer sur iPhone X à la verticale */        
     #signature {
-        position:absolute;
-        top:0;
-        padding-top: 0;
-        padding-bottom: 450%;
+        height: 100%;
+        padding-top: 200%;
+        padding-bottom: 250%;
     }
     
     .modal_content {

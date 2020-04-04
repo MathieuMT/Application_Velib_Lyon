@@ -128,9 +128,7 @@ class Createmap {
                     /*-----sessionStorage-----*/
                     let infosStation = 
                     JSON.parse(sessionStorage.getItem("datas"));
-                    
-                    
-                    /*------------------------*/
+
                     if (infosStation != null) {
                         document.getElementById('name').textContent = infosStation.name;
                         document.getElementById('address').textContent = infosStation.address;
@@ -178,7 +176,7 @@ class Createmap {
             $('#notification').html("");
         }   
 
-        // LORS DU CLIC SUR BOUTON "RESERVEZ ICI"
+        // LORS DU CLIC SUR BOUTON "Réservez ici"
         $('#btn_reservation').click(function () {
             /*-----localStorage-----*/
             /* on sauvegarde les nom et prénom dans le navigateur */
@@ -203,30 +201,43 @@ class Createmap {
             } 
             /* Si non (champs de texte nom et prénom remplis), alors on execute ceci au clic sur le bouton "RESERVEZ ICI": */
             else {
-                $('#btn_reservation').css('display', 'block');   
+                $('#btn_reservation').css('display', 'none');   
                 $('#signature').css('display', 'flex');
-                /* methode de l'instance c de la class Canvas: */
-                c.cleaning();
-                c.controlMouse();
-                c.controlTouch();
+                
+                $('#btn_validation').css('display', 'none');
+                $('#btn_effacer').css('display', 'none');
                 
                 /* fermer la popup de signature avec la croix */
                 $('.close_canvas').click(function () {
                     $('#signature').css('display', 'none');
-                    $('#btn_reservation').css('display', 'block'); 
+                    $('#btn_reservation').css('display', 'block');
                 });
-                /* fermer la popup de signature lors de la confirmation */
-                $('#btn_validation').click(function () {
-                    $('#signature').css('display', 'none');
+                
+                /* DÉCLIC SUR LE CANVAS POUR FAIRE APPARAITRE LES BOUTONS "Confirmation" ET "Effacer" SUR LA POPUP DU CANVAS */
+                /* avec la souris après avoir dessiné */
+                $('#canvas').mouseup(function () {
+                    $('#btn_validation').css('display', 'block');
+                    $('#btn_effacer').css('display', 'block');
+                    $('#btn_effacer').click(function () {
+                        $('#btn_validation').css('display', 'none');
+                    })
+                    
+                    $('#btn_validation').click(function () {
+                        $('#signature').css('display', 'none');
+                    });
                 });
-                /* Effacer le contenu du canvas en appelant la methode "effacerSignature" de la classe Canvas */
-                $('#btn_effacer').click(function () {
-                    c.btnCleaning();
+                /* sur écran tactil après avoir dessiné */
+                $('#canvas').on('touchend click',function () {
+                    $('#btn_validation').css('display', 'block');
+                    $('#btn_effacer').css('display', 'block'); 
+                    $('#btn_effacer').click(function () {
+                        $('#btn_validation').css('display', 'none');
+                    })
+                    
+                    $('#btn_validation').click(function () {
+                        $('#signature').css('display', 'none');
+                    });
                 });
-                $('#btn_validation').css('display', 'none');
-                $('#btn_effacer').css('display', 'none');
-                /* au clic sur le bouton "EFFACER" du canvas */
-                c.btnCleaning();
                 
                 /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
                 /*-----sessionStorage-----*/
@@ -253,19 +264,15 @@ class Createmap {
             }  
         });
         
-       
-        // LORS DU CLIC SUR BOUTON "ANNULER"
+        // LORS DU CLIC SUR BOUTON "Annulez ici"
         $('#annulation').click(function () {
-                c.cleaning(); /* nettoyer le canvas */
                 $('#countdown').css('display', 'none');
                 $('#annulation').css('display', 'none');
-                /*$('#btn_reservation').css('display', 'block');*/
                 $('#btn_validation').css('display', 'none');
                 clearInfos();
         })
-        
+
         // POPUP D'EXPIRATION: si on clic sur la croix ou le bouton "Faites une nouvelle réservation"
-        
         $('.close_expiration').click(function () {
             clearInfos();
         })
@@ -273,20 +280,6 @@ class Createmap {
         $('#btnNouvelleReservation').click(function () {
             clearInfos();
         })
-        
-
-        /* DÉCLIC SUR LE CANVAS POUR FAIRE APPARAITRE LES BOUTONS "Confirmation" ET "Effacer" SUR LA POPUP DU CANVAS */
-        // avec la souris
-        $('#canvas').mouseup(function () {
-            $('#btn_validation').css('display', 'block');
-            $('#btn_effacer').css('display', 'block'); 
-        });
-        
-        // pour écran tactil:
-        document.getElementById("canvas").addEventListener('touchend', function () {
-            document.getElementById("btn_validation").style.display = "block";
-            document.getElementById("btn_effacer").style.display = "block";
-        });
 
         /* METHODE QUI SAUVEGARDE DANS LA MÉMOIRE DU NAVIGATEUR EN sessionStorage LORS D'UNE SESSION, 
         LES INFOS DE LA STATION SÉLECTIONNÉE DANS LE BLOC DES INFORMATIONS DE LA STATION SÉLECTIONNÉE */
@@ -398,37 +391,25 @@ class Createmap {
                 /*-------------------*/
                 
             }
-            
-            
-            
+ 
         }
         
         //LORS DU CLIC SUR BOUTON "CONFIRMATION"   
         $('#btn_validation').click(function() {
+            
             /* appel de la methode qui sauvegarde les données de la sation avec sessionStorage */
             onSauve();
             
             /* appel de la methode qui conserve les données dans la mémoire du navigateur au rafraichissement de la page web */
             onRestore();
-            
-            
-            
+
             $('#resultats').css('display','flex');
             $('#countdown').css('display', 'block');
             $('#annulation').css('display', 'block');
             $('#btn_reservation').css('display', 'none');
-            
             $('#notification').html("");
             let str ="1 vélo’v réservé par " + $('#prenom').val() + " " + $('#nom').val() + " à la station " +  $('#name').text() + " pendant: ";
             $('#notification').html(str);
-            
-            /* appel de la méthode qui démarre le compte à rebours à 20 minutes et qui l'affiche dans #countdown */
-            /*
-            countdown.showTimer();
-            */
-            /*
-            init(); 
-            */
         })
        
         // LORSQU'ON RAFRAICHIT LA PAGE WEB:
@@ -462,7 +443,6 @@ class Createmap {
     }
    
 }
-
 
 /* on instencie mapObj au chargement de la page à partir de la class Createmap: */
 window.onload = function () {
