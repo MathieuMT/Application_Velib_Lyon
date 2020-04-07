@@ -1,6 +1,3 @@
-// on définit l'objet mapObj
-let mapObj;
-
 // on définit la class Createmap
 class Createmap {
     constructor() {
@@ -444,9 +441,9 @@ class Createmap {
    
 }
 
-/* on instencie mapObj au chargement de la page à partir de la class Createmap: */
+/* on instencie la constante mapObj au chargement de la page à partir de la class Createmap: */
 window.onload = function () {
     'use strict'; 
-    mapObj = new Createmap;
+    const mapObj = new Createmap;
 }; 
 
