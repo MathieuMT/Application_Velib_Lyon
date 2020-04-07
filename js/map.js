@@ -18,7 +18,8 @@ class Createmap {
 
         /* chargez les données "station" codées en JSON à partir du serveur à l'aide d'une requête HTTPS GET 
         dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon
-        Les données envoyées au serveur sont ajoutées à l'URL https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0 en tant que chaîne de requête. Si la valeur du paramètre station est un objet brut, il est converti en chaîne et encodé en URL avant d'être ajouté à l'URL https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0. */
+        Les données envoyées au serveur sont ajoutées à l'URL https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0 en tant que chaîne de requête. 
+        La valeur du paramètre station est un objet converti en chaine .*/
         $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0", function (station) {
             console.log( "success" );
             /* on définit le tableau Marker vide pour les futurs marqueurs */
