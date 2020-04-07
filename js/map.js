@@ -16,10 +16,11 @@ class Createmap {
             zoom: 12
         });
 
-        /* chargez les données codées JSON à partir du serveur à l'aide d'une requête HTTPS GET 
-        dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon */
-        $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0", function (reponse) {
-        
+        /* chargez les données "station" codées en JSON à partir du serveur à l'aide d'une requête HTTPS GET 
+        dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon
+        Les données envoyées au serveur sont ajoutées à l'URL https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0 en tant que chaîne de requête. Si la valeur du paramètre station est un objet brut, il est converti en chaîne et encodé en URL avant d'être ajouté à l'URL https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0. */
+        $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0", function (station) {
+            console.log( "success" );
             /* on définit le tableau Marker vide pour les futurs marqueurs */
             let markers = [];
         
@@ -31,19 +32,19 @@ class Createmap {
                 close: 'assets/img/marqueurs/closed.png'
             }
         
-            /* on récupère les informations, les détails de l'état (les données clé = valeur) pour chaque station de vélo sur l'API JCDecaux */
-            $.each(reponse, function(key, station) {
+            /* on parcourt les données demandées de l'objet station qui représente les détails de l'état (les données clé = valeur ) pour chaque station de vélo sur l'API JCDecaux */
+            $.each(station, function(key, value) {
             
                 /* on définit chaque variable d'information de chaque station de vélo */
-                let name = station.name;
-                let address = station.address;
-                let positionLat = station.position.lat;
-                let positionLng = station.position.lng; 
-                let status = station.status;
-                let lastUpdate = new Date(station.last_update);
-                let bikeStands = station.bike_stands;
-                let availableBikes = station.available_bikes;
-                let availableBikeStands = station.available_bike_stands;
+                let name = value.name;
+                let address = value.address;
+                let positionLat = value.position.lat;
+                let positionLng = value.position.lng; 
+                let status = value.status;
+                let lastUpdate = new Date(value.last_update);
+                let bikeStands = value.bike_stands;
+                let availableBikes = value.available_bikes;
+                let availableBikeStands = value.available_bike_stands;
             
                 /* on definit la variables coords contenant les coordonnées géographique pour chaque station de vélo sur la carte avec l'API google.maps */
                 let coords = new google.maps.LatLng(positionLat, positionLng);
@@ -124,7 +125,7 @@ class Createmap {
                     grace à l'API webStorage qu'on récupère dans l'affichage dans la div#resultats */
                     /*-----sessionStorage-----*/
                     let infosStation = 
-                    JSON.parse(sessionStorage.getItem("datas"));
+                    JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
 
                     if (infosStation != null) {
                         document.getElementById('name').textContent = infosStation.name;
@@ -137,10 +138,10 @@ class Createmap {
                         /*-----localStorage-----*/
                         /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur 
                         même après avoir fermé le navigateur dans les champs nom et prénom */
-                        let nom = JSON.parse(localStorage.getItem("nom"));
+                        let nom = JSON.parse(localStorage.getItem("nom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
                         document.getElementById('nom').value = nom;
 
-                        let prenom = JSON.parse(localStorage.getItem("prenom"));
+                        let prenom = JSON.parse(localStorage.getItem("prenom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
                         document.getElementById('prenom').value = prenom;
                         /*---------------------*/
                         
@@ -159,7 +160,12 @@ class Createmap {
 
             // regroupement des markers dans des markerCluster sur la carte.
             let markerCluster = new MarkerClusterer(map, markers, {imagePath: 'assets/img/marqueurs/m'});
-        });
+            
+        }).fail(function( jqxhr, textStatus, error ) {
+            /* Chargez les données JSON à partir de https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0, en transmettant des données supplémentaires et accédez à un nom à partir des données JSON renvoyées. Si une erreur se produit, on enregistre un message d'erreur à la place. */
+            let err = textStatus + ", " + error;
+            console.log( "Request Failed: " + err );
+          });
 
 
 /******************************************** ACTIONS LORS D'UNE RÉSERVATION ********************************************/  
@@ -239,7 +245,7 @@ class Createmap {
                 /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
                 /*-----sessionStorage-----*/
                 let infosStation = 
-                JSON.parse(sessionStorage.getItem("datas"));
+                JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
                 /*------------------------*/
                 if (infosStation != null) {
                     document.getElementById('name').textContent = infosStation.name;
@@ -251,10 +257,10 @@ class Createmap {
                 }
                 /*-----localStorage-----*/
                 /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session */
-                let nom = JSON.parse(localStorage.getItem("nom"));
+                let nom = JSON.parse(localStorage.getItem("nom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
                 document.getElementById('nom').value = nom;
 
-                let prenom = JSON.parse(localStorage.getItem("prenom"));
+                let prenom = JSON.parse(localStorage.getItem("prenom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
                 document.getElementById('prenom').value = prenom;
                 /*----------------------*/
                 $('#notification').html("");
@@ -290,7 +296,7 @@ class Createmap {
                 availableBikeStands: document.getElementById('available_bike_stands').textContent
             };
             /*-----sessionStorage-----*/
-            sessionStorage.setItem("datas", JSON.stringify(infosStation));
+            sessionStorage.setItem("station", JSON.stringify(infosStation)); /* La méthode JSON.stringify() convertit une valeur JavaScript en chaîne JSON. */
             /*------------------------*/
         }
 
@@ -299,13 +305,13 @@ class Createmap {
             
             /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
             /*-----sessionStorage-----*/
-            let infosStation = JSON.parse(sessionStorage.getItem("datas"));
+            let infosStation = JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
             /*------------------------*/
             
             /*-----localStorage-----*/
             /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session */
-            let nom = JSON.parse(localStorage.getItem("nom"));
-            let prenom = JSON.parse(localStorage.getItem("prenom"));
+            let nom = JSON.parse(localStorage.getItem("nom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
+            let prenom = JSON.parse(localStorage.getItem("prenom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
             /*----------------------*/
             
             /* si les champs du bloc d'informations de la station séléctionnées ne sont pas vides alors, on fait ceci :*/
@@ -380,8 +386,8 @@ class Createmap {
                 /*---localStorage---*/
                 /* pour que le nom et le prénom soient conservés dans les inputs type texte 
                 même si on ferme le navigateur grace à localStorage */
-                let nom = JSON.parse(localStorage.getItem("nom"));
-                let prenom = JSON.parse(localStorage.getItem("prenom"));
+                let nom = JSON.parse(localStorage.getItem("nom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
+                let prenom = JSON.parse(localStorage.getItem("prenom")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
 
                 document.getElementById('nom').value = nom;
                 document.getElementById('prenom').value = prenom;
