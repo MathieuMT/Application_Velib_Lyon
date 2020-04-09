@@ -130,8 +130,8 @@ class Createmap {
                     /* si on clique sur un autre marqueur pendant une réservation en cours, 
                     on rend la carte inactive pour ne pas cumuler plusieurs réservation en même temps, 
                     en gardant les informations de notre résevation en cours, 
-                    car après avoir cliquer sur le bouton "Réservez ici" on stocke en mémoire les informations 
-                    grace à l'API webStorage qu'on récupère dans l'affichage dans la div#resultats */
+                    car après avoir cliquer sur le bouton "Confirmation" on stocke en mémoire les informations 
+                    grace à l'API webStorage qu'on récupère dans l'affichage dans la div#infos_station */
                     /*-----sessionStorage-----*/
                     let infosStation = 
                     JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
