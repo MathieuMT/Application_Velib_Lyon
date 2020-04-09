@@ -10,13 +10,15 @@ class Createmap {
 
         "use strict";
 
-        /* on instancie l'objet map de la classe google.maps. */
+        /* on instancie l'objet map de la classe Map.
+        on a deux options requises pour cette carte: center et zoom.
+        ici la page web affiche une carte centré sur la ville de Lyon */
         let map = new google.maps.Map(document.getElementById("map"), {
             center: {lat: 45.750000, lng: 4.850000},
             zoom: 12
         });
 
-        /* chargez les données "station" codées en JSON à partir du serveur à l'aide d'une requête HTTPS GET 
+        /* chargez les données codées en JSON à partir du serveur à l'aide d'une requête HTTPS GET 
         dans PANNEAU d'INFOS de l'API JCDecaux sur les stations de vélos en location dans la ville de Lyon
         Les données envoyées au serveur sont ajoutées à l'URL https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=65e29120ccd2a3ccf250c42bea4945f65e2525a0 en tant que chaîne de requête. 
         La valeur du paramètre station est un objet converti en chaine .*/
@@ -33,7 +35,8 @@ class Createmap {
                 close: 'assets/img/marqueurs/closed.png'
             }
         
-            /* on parcourt les données demandées de l'objet station qui représente les détails de l'état (les données clé = valeur ) pour chaque station de vélo sur l'API JCDecaux */
+            /* on parcourt chaque objet station qui renvoie une paire clé-valeur à chaque fois représentant les détails de l'état
+            pour chaque station de vélo sur l'API JCDecaux */
             $.each(station, function(key, value) {
             
                 /* on définit chaque variable d'information de chaque station de vélo */
@@ -47,10 +50,13 @@ class Createmap {
                 let availableBikes = value.available_bikes;
                 let availableBikeStands = value.available_bike_stands;
             
-                /* on definit la variables coords contenant les coordonnées géographique pour chaque station de vélo sur la carte avec l'API google.maps */
+                /* on instancie l'objet coords à partir de la Classe LatLng avec dans le constructeur une paire de coordonnées de latitude et de longitude, stockées en degrés, 
+                et contenant les coordonnées géographique pour chaque station de vélo sur la carte avec l'API JavaScript Maps */
                 let coords = new google.maps.LatLng(positionLat, positionLng);
             
-                // on définit l'objet markerOptions pour les options de chaque marqueur représentant une station de vélo sur la carte */
+                /* on définit l'objet markerOptions pour initialiser la position 
+                et d'autres options (title, animation) dans le constructeur de la classe Marker 
+                lors de l'instanciation de l'objet marker représentant une station de vélo sur la carte définit par l'objet map */
                 let markerOptions = {
                     position :coords,
                     title:"Station VÉLO’V: " + name,
@@ -68,7 +74,9 @@ class Createmap {
                     markerOptions.icon = iconsMarker.close;
                 }
 
-                /* on instancie l'objet marker de la class google.maps.Marker avec ses options (markerOption) définie plus haut */
+                /* on instancie l'objet marker à partir de la classe Marker avec dans le constructeur les markerOptions définis plus haut 
+                et spécifiant les propriétés initiales du marqueur tel que la position qui est obligatoire 
+                pour positioner le marqueur sur la carte avec sa latitude et sa longitude */
                 let marker = new google.maps.Marker(markerOptions);
 
                 // LORSQU'ON CLIC SUR UN MARQUEUR SUR LA CARTE:
@@ -159,7 +167,9 @@ class Createmap {
                 markers.push(marker);
             })
 
-            // regroupement des markers dans des markerCluster sur la carte.
+            /* regroupement des markers dans des markerCluster sur la carte en instanciant markerCluster 
+            à partir de la classe MarkerClusterer avec dans son constructeur qui spécifie l'ojet map, le tableau d'objets markers 
+            et les lien vers les images représentant les différents marqueurs cluster lors de l'insatciation de l'objet markerCluster */
             let markerCluster = new MarkerClusterer(map, markers, {imagePath: 'assets/img/marqueurs/m'});
             
         }).fail(function( jqxhr, textStatus, error ) {
