@@ -133,16 +133,16 @@ class Createmap {
                     car après avoir cliquer sur le bouton "Confirmation" on stocke en mémoire les informations 
                     grace à l'API webStorage qu'on récupère dans l'affichage dans la div#infos_station */
                     /*-----sessionStorage-----*/
-                    let infosStation = 
+                    let value = 
                     JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
 
-                    if (infosStation != null) {
-                        document.getElementById('name').textContent = infosStation.name;
-                        document.getElementById('address').textContent = infosStation.address;
-                        document.getElementById('status').textContent = infosStation.status;
-                        document.getElementById('bike_stands').textContent = infosStation.bikeStands;
-                        document.getElementById('available_bikes').textContent = infosStation.availableBikes - 1;
-                        document.getElementById('available_bike_stands').textContent = infosStation.availableBikeStands;
+                    if (value != null) {
+                        document.getElementById('name').textContent = value.name;
+                        document.getElementById('address').textContent = value.address;
+                        document.getElementById('status').textContent = value.status;
+                        document.getElementById('bike_stands').textContent = value.bikeStands;
+                        document.getElementById('available_bikes').textContent = value.availableBikes - 1;
+                        document.getElementById('available_bike_stands').textContent = value.availableBikeStands;
                        
                         /*-----localStorage-----*/
                         /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur 
@@ -157,7 +157,7 @@ class Createmap {
                         $("#btn_reservation").css('display', 'none');
                         $('#infos_station li p').css('color','#00b150');
 
-                        document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom + " à la station " + infosStation.name + " pendant: ";
+                        document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom + " à la station " + value.name + " pendant: ";
                     }
 /***************************************************************************************************************************************************/
                        
@@ -255,16 +255,16 @@ class Createmap {
                 
                 /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
                 /*-----sessionStorage-----*/
-                let infosStation = 
+                let value = 
                 JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
                 /*------------------------*/
-                if (infosStation != null) {
-                    document.getElementById('name').textContent = infosStation.name;
-                    document.getElementById('address').textContent = infosStation.address;
-                    document.getElementById('status').textContent = infosStation.status;
-                    document.getElementById('bike_stands').textContent = infosStation.bikeStands;
-                    document.getElementById('available_bikes').textContent = infosStation.availableBikes - 1;
-                    document.getElementById('available_bike_stands').textContent = infosStation.availableBikeStands;
+                if (value != null) {
+                    document.getElementById('name').textContent = value.name;
+                    document.getElementById('address').textContent = value.address;
+                    document.getElementById('status').textContent = value.status;
+                    document.getElementById('bike_stands').textContent = value.bikeStands;
+                    document.getElementById('available_bikes').textContent = value.availableBikes - 1;
+                    document.getElementById('available_bike_stands').textContent = value.availableBikeStands;
                 }
                 /*-----localStorage-----*/
                 /* on recupère les informations du nom et prénom en localStorage dans la mémoire du navigateur même après une session */
@@ -298,7 +298,7 @@ class Createmap {
         /* METHODE QUI SAUVEGARDE DANS LA MÉMOIRE DU NAVIGATEUR EN sessionStorage LORS D'UNE SESSION, 
         LES INFOS DE LA STATION SÉLECTIONNÉE DANS LE BLOC DES INFORMATIONS DE LA STATION SÉLECTIONNÉE */
         let onSauve = function() {
-            let infosStation = {
+            let value = {
                 name: document.getElementById('name').textContent,
                 address: document. getElementById('address').textContent,
                 status: document.getElementById('status').textContent,
@@ -307,7 +307,7 @@ class Createmap {
                 availableBikeStands: document.getElementById('available_bike_stands').textContent
             };
             /*-----sessionStorage-----*/
-            sessionStorage.setItem("station", JSON.stringify(infosStation)); /* La méthode JSON.stringify() convertit une valeur JavaScript en chaîne JSON. */
+            sessionStorage.setItem("station", JSON.stringify(value)); /* La méthode JSON.stringify() convertit une valeur JavaScript en chaîne JSON. */
             /*------------------------*/
         }
 
@@ -316,7 +316,7 @@ class Createmap {
             
             /* on recupère les informations de la station de vélo en sessionStorage dans la mémoire du navigateur lors d'une session */
             /*-----sessionStorage-----*/
-            let infosStation = JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
+            let value = JSON.parse(sessionStorage.getItem("station")); /* on analyse une chaîne JSON bien formée et renvoie la valeur JavaScript résultante. */
             /*------------------------*/
             
             /*-----localStorage-----*/
@@ -326,7 +326,7 @@ class Createmap {
             /*----------------------*/
             
             /* si les champs du bloc d'informations de la station séléctionnées ne sont pas vides alors, on fait ceci :*/
-            if (infosStation != null) {
+            if (value != null) {
                 /* redimensionner la carte au clic sur un marqueur */
                 $('#map').attr('class', 'col-sm-7 col-xs-12');  
                 
@@ -353,27 +353,27 @@ class Createmap {
                 
                 $('#resultats').css('display','flex');
                 
-                document.getElementById('name').textContent = infosStation.name;
+                document.getElementById('name').textContent = value.name;
                 $('#name').css('color', '#00b150');
                 $('#name').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
 
-                document. getElementById('address').textContent = infosStation.address;
+                document. getElementById('address').textContent = value.address;
                 $('#address').css('color', '#00b150');
                 $('#address').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
 
-                document.getElementById('status').textContent = infosStation.status;
+                document.getElementById('status').textContent = value.status;
                 $('#status').css('color', '#00b150');
                 $('#status').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
 
-                document.getElementById('bike_stands').textContent = infosStation.bikeStands;
+                document.getElementById('bike_stands').textContent = value.bikeStands;
                 $('#bike_stands').css('color', '#00b150');
                 $('#bike_stands').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
 
-                document.getElementById('available_bikes').textContent = infosStation.availableBikes - 1;
+                document.getElementById('available_bikes').textContent = value.availableBikes - 1;
                 $('#available_bikes').css('color', '#00b150');
                 $('#available_bikes').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
 
-                document.getElementById('available_bike_stands').textContent = infosStation.availableBikeStands;
+                document.getElementById('available_bike_stands').textContent = value.availableBikeStands;
                 $('#available_bike_stands').css('color', '#00b150');
                 $('#available_bike_stands').css('text-shadow','0.09em 0.1em 0.09em #0a1c1e');
                 
@@ -384,7 +384,7 @@ class Createmap {
                 document.getElementById('prenom').value = prenom;
                /*-------------------*/
                 
-                document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom +  " à la station " + infosStation.name + " pendant: ";
+                document.getElementById('notification').textContent = "1 vélo’v réservé par " + prenom + " " + nom +  " à la station " + value.name + " pendant: ";
 
                 $('#annulation').click(function (){
                     $('#countdown').css('display', 'none');
