@@ -35,8 +35,7 @@ class Createmap {
                 close: 'assets/img/marqueurs/closed.png'
             }
         
-            /* on parcourt chaque objet station qui renvoie une paire clé-valeur à chaque fois représentant les détails de l'état
-            pour chaque station de vélo sur l'API JCDecaux */
+            /* on parcourt un tableau de données pour chaque station qui renvoie une paire clé-valeur afin de renseigner et positionner les marqueurs de chaque station de vélo sur la carte grace à l'API JCDecaux */
             $.each(station, function(key, value) {
             
                 /* on définit chaque variable d'information de chaque station de vélo */
