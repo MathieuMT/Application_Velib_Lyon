@@ -3,7 +3,6 @@ class Canvas{
 	constructor(idCanvas, width, height){
         this.canvas = document.getElementById(idCanvas);
 		this.cleanCanvas = document.getElementById("btn_effacer");
-		this.btnValidation = document.getElementById("btn_validation");
         this.btnClosePopupSignature = document.querySelector(".close_canvas");
 		this.ctx = this.canvas.getContext("2d");
         this.canvas.width = width;
